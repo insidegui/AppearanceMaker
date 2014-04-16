@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AMEditorWC">
+            <connections>
+                <outlet property="createSkeletonButton" destination="Tgs-4N-sGV" id="kK3-l2-aso"/>
+                <outlet property="exportAppearanceButton" destination="dOF-7p-EgV" id="qnQ-cu-AEw"/>
+                <outlet property="imageFormatPopUp" destination="icr-Qi-wLK" id="bQY-lO-eke"/>
+                <outlet property="makeNewAppearanceButton" destination="Jw7-RA-Zdz" id="DFb-fi-lGv"/>
+                <outlet property="newAppearanceButton" destination="Jw7-RA-Zdz" id="7U3-QC-HB3"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Appearance Maker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="238" height="147"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <value key="minSize" type="size" width="238" height="147"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="238" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jw7-RA-Zdz">
+                        <rect key="frame" x="14" y="99" width="210" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="New Appearance" bezelStyle="rounded" alignment="center" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="LWX-oi-ZYX">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="Helvetica"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="newAppearance:" target="-2" id="nzJ-iP-vmm"/>
+                        </connections>
+                    </button>
+                    <popUpButton focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="icr-Qi-wLK">
+                        <rect key="frame" x="18" y="62" width="61" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="CMe-Tc-R3a"/>
+                        </constraints>
+                        <popUpButtonCell key="cell" type="push" title="PSD" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="Fz3-OS-40v" id="Vnn-Tu-NCo">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="Helvetica"/>
+                            <menu key="menu" title="OtherViews" id="mN1-Tu-oBO">
+                                <items>
+                                    <menuItem title="PSD" id="Fz3-OS-40v"/>
+                                    <menuItem title="PNG" state="on" id="Dex-TY-EdJ"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tgs-4N-sGV">
+                        <rect key="frame" x="78" y="58" width="146" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Create Skeleton" bezelStyle="rounded" alignment="center" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="UcX-eg-5yb">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="Helvetica"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="createSkeleton:" target="-2" id="mEq-gU-DMg"/>
+                        </connections>
+                    </button>
+                    <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dOF-7p-EgV">
+                        <rect key="frame" x="14" y="17" width="210" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Export Appearance" bezelStyle="rounded" alignment="center" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="uVx-Xf-CeO">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="Helvetica"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="exportAppearance:" target="-2" id="fh5-RQ-o79"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Jw7-RA-Zdz" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="5AJ-uT-NoG"/>
+                    <constraint firstItem="dOF-7p-EgV" firstAttribute="top" secondItem="icr-Qi-wLK" secondAttribute="bottom" constant="20" symbolic="YES" id="5xt-gi-eOP"/>
+                    <constraint firstItem="Jw7-RA-Zdz" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="G3p-lI-EBs"/>
+                    <constraint firstItem="Tgs-4N-sGV" firstAttribute="leading" secondItem="icr-Qi-wLK" secondAttribute="trailing" constant="8" symbolic="YES" id="HBz-Vz-LM9"/>
+                    <constraint firstItem="Tgs-4N-sGV" firstAttribute="baseline" secondItem="icr-Qi-wLK" secondAttribute="baseline" id="Iov-vg-XR9"/>
+                    <constraint firstItem="icr-Qi-wLK" firstAttribute="top" secondItem="Jw7-RA-Zdz" secondAttribute="bottom" constant="20" symbolic="YES" id="Kde-Fj-nou"/>
+                    <constraint firstItem="dOF-7p-EgV" firstAttribute="trailing" secondItem="Tgs-4N-sGV" secondAttribute="trailing" id="UAD-Qc-zRG"/>
+                    <constraint firstItem="dOF-7p-EgV" firstAttribute="leading" secondItem="icr-Qi-wLK" secondAttribute="leading" id="bcr-dE-CJU"/>
+                    <constraint firstAttribute="trailing" secondItem="Tgs-4N-sGV" secondAttribute="trailing" constant="20" symbolic="YES" id="j72-QU-O6m"/>
+                    <constraint firstItem="Jw7-RA-Zdz" firstAttribute="leading" secondItem="icr-Qi-wLK" secondAttribute="leading" id="kHB-oc-FKT"/>
+                    <constraint firstItem="Jw7-RA-Zdz" firstAttribute="trailing" secondItem="Tgs-4N-sGV" secondAttribute="trailing" id="mHH-SN-wr0"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+</document>
