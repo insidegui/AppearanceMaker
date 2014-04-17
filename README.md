@@ -10,7 +10,7 @@ Create custom appearances to customize your app's look with NSAppearance
 
 Download, build & run, follow the instructions.
 
-First you create a uicatalog file, then you export a "skeleton" (a directory structure containing the original images for each control).
+First you create an uicatalog file, then you export a "skeleton" (a directory structure containing the original images for each control).
 
 After this is done you can edit the PSDs, then you export the .car file, put It in your bundle and use It :)
 
