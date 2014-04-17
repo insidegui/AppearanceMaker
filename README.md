@@ -6,6 +6,10 @@ Create custom appearances to customize your app's look with NSAppearance
 
 [Check the docs](https://developer.apple.com/library/mac/documentation/AppKit/Reference/NSAppearance_Class/Reference/Reference.html). Even though Apple states you can create a custom appearance using Xcode, this is not currently available, so I've created this simple app that lets you make custom appearances.
 
+## Download binary
+
+If you just want to use It, [download the latest binary](https://raw.github.com/insidegui/AppearanceMaker/master/Binary/AppearanceMaker_latest.zip).
+
 ## How to use
 
 Download, build & run, follow the instructions.

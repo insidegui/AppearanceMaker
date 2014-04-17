@@ -19,6 +19,7 @@
 		DD4983DB18FF23110050A929 /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4983DA18FF23110050A929 /* CoreThemeDefinition.framework */; };
 		DD4983F418FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4983F318FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m */; };
 		DD65D02819005D5800BEB048 /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = DD65D02719005D5800BEB048 /* AMEditorAppearance.car */; };
+		F40AAB0D190077BD000D4FC7 /* AppearanceMakerIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		DD4983F218FF3F740050A929 /* CoreThemeDocument+ArrayControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreThemeDocument+ArrayControllers.h"; sourceTree = "<group>"; };
 		DD4983F318FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreThemeDocument+ArrayControllers.m"; sourceTree = "<group>"; };
 		DD65D02719005D5800BEB048 /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMEditorAppearance.car; sourceTree = "<group>"; };
+		F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = AppearanceMakerIcon.iconset; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		DD49839318FF1D0C0050A929 = {
 			isa = PBXGroup;
 			children = (
+				F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */,
 				DD4983A518FF1D0D0050A929 /* Appearance Maker */,
 				DD49839E18FF1D0D0050A929 /* Frameworks */,
 				DD49839D18FF1D0D0050A929 /* Products */,
@@ -192,6 +195,7 @@
 			files = (
 				DD4983D918FF1D950050A929 /* AMEditorWC.xib in Resources */,
 				DD4983AA18FF1D0D0050A929 /* InfoPlist.strings in Resources */,
+				F40AAB0D190077BD000D4FC7 /* AppearanceMakerIcon.iconset in Resources */,
 				DD4983B818FF1D0D0050A929 /* Images.xcassets in Resources */,
 				DD4983B018FF1D0D0050A929 /* Credits.rtf in Resources */,
 				DD4983B618FF1D0D0050A929 /* MainMenu.xib in Resources */,
@@ -316,7 +320,6 @@
 		DD4983CE18FF1D0D0050A929 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -333,7 +336,6 @@
 		DD4983CF18FF1D0D0050A929 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
