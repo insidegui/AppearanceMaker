@@ -118,6 +118,10 @@
 @property(retain, nonatomic) NSSet *elements; // @dynamic elements;
 @end
 
+/**
+ CoreThemeDocument represents an uicatalog file and Its related assets,
+ used to configure an appearance
+ */
 @interface CoreThemeDocument : NSPersistentDocument
 {
     NSMutableDictionary *constantArrayControllers;
@@ -139,7 +143,16 @@
 + (id)_imageAssetURLsByCopyingFileURLs:(id)arg1 toManagedLocationAtURL:(id)arg2 error:(id *)arg3;
 + (id)migrateDocumentAtURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 + (long long)dataModelVersionFromMetadata:(id)arg1;
-+ (id)createConfiguredDocumentAtURL:(id)arg1 error:(id *)arg2;
+
+/**
+ @method createConfiguredDocumentAtURL:error:
+ @abstract Creates a new uicatalog at the specified location
+ @discussion
+ This method creates a configured document at the specified URL,
+ if the file already exists, It gets overwritten
+ */
++ (id)createConfiguredDocumentAtURL:(NSURL *)documentURL error:(NSError **)outError;
+
 + (void)_addThemeDocument:(id)arg1;
 + (id)_sharedDocumentList;
 @property(copy) NSString *pathToRepresentedDocument; // @synthesize pathToRepresentedDocument;
@@ -150,28 +163,39 @@
 - (void)_synchronousSave;
 - (void)firstSaveDidEnd:(id)arg1 didSave:(BOOL)arg2 contextInfo:(void *)arg3;
 - (void)windowControllerDidLoadNib:(id)arg1;
-- (BOOL)readFromURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
+
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError;
+
 - (BOOL)checkCompatibilityOfDocumentAtURL:(id)arg1 ofType:(id)arg2 error:(id *)arg3;
 - (BOOL)writeSafelyToURL:(id)arg1 ofType:(id)arg2 forSaveOperation:(unsigned long long)arg3 error:(id *)arg4;
 - (BOOL)configurePersistentStoreCoordinatorForURL:(id)arg1 ofType:(id)arg2 modelConfiguration:(id)arg3 storeOptions:(id)arg4 error:(id *)arg5;
 - (id)updatedVersionsMetadataFromMetadata:(id)arg1;
 - (id)persistentStoreTypeForFileType:(id)arg1;
+
+// TODO: mess around with these
 - (void)importCursorsFromURL:(id)arg1 getUnusedImportedCursors:(id *)arg2 getUnupdatedCursors:(id *)arg3;
 - (void)exportCursorsToURL:(id)arg1;
 - (void)importColorsFromURL:(id)arg1 valuesOnly:(BOOL)arg2 getUnusedColorNames:(id *)arg3;
 - (void)exportColorsToURL:(id)arg1;
+
 - (id)namedEffectProductions;
 - (id)namedArtworkProductions;
-- (id)schemaPartDefinitionWithElementID:(long long)arg1 partID:(long long)arg2;
-- (id)schemaDefinitionWithElementID:(long long)arg1;
-- (BOOL)customizeSchemaPartDefinition:(id)arg1 usingArtworkFormat:(id)arg2 shouldReplaceExisting:(BOOL)arg3 error:(id *)arg4;
-- (BOOL)customizeSchemaEffectDefinition:(id)arg1 shouldReplaceExisting:(BOOL)arg2 error:(id *)arg3;
-- (BOOL)customizeSchemaElementDefinition:(id)arg1 usingArtworkFormat:(id)arg2 shouldReplaceExisting:(BOOL)arg3 error:(id *)arg4;
-- (void)removeCustomizationForSchemaDefinition:(id)arg1 shouldDeleteAssetFiles:(BOOL)arg2;
-- (BOOL)customizationExistsForSchemaDefinition:(id)arg1;
+
+- (TDThemeConstant *)schemaPartDefinitionWithElementID:(NSInteger)elementID partID:(NSInteger)partID;
+- (TDThemeConstant *)schemaDefinitionWithElementID:(NSInteger)elementID;
+
+- (BOOL)customizeSchemaPartDefinition:(TDThemeConstant *)part usingArtworkFormat:(NSString *)format shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
+- (BOOL)customizeSchemaEffectDefinition:(TDThemeConstant *)part shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
+- (BOOL)customizeSchemaElementDefinition:(TDThemeConstant *)part usingArtworkFormat:(NSString *)format shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
+
+- (void)removeCustomizationForSchemaDefinition:(TDThemeConstant *)definition shouldDeleteAssetFiles:(BOOL)shouldDelete;
+- (BOOL)customizationExistsForSchemaDefinition:(TDThemeConstant *)definition;
+
 - (id)_customizedSchemaDefinitionsForEntity:(id)arg1;
-- (id)customizedSchemaEffectDefinitions;
-- (id)customizedSchemaElementDefinitions;
+
+- (NSArray *)customizedSchemaEffectDefinitions;
+- (NSArray *)customizedSchemaElementDefinitions;
+
 - (BOOL)usesCUISystemThemeRenditionKey;
 - (long long)renditionKeySpecAttributeCount;
 - (int)renditionKeySemantics;
@@ -184,9 +208,11 @@
 - (void)resetThemeConstants;
 - (void)buildModel;
 - (long long)targetPlatform;
-- (void)setTargetPlatform:(long long)arg1;
-- (void)setArtworkFormat:(id)arg1;
-- (id)artworkFormat;
+
+- (void)setTargetPlatform:(NSInteger)platformID;
+- (void)setArtworkFormat:(NSString *)formatName;
+- (NSString *)artworkFormat;
+
 - (unsigned int)checksum;
 - (void)setUuid:(id)arg1;
 - (id)uuid;
@@ -198,18 +224,22 @@
 - (id)relativePathToProductionData;
 - (id)rootPathForProductionData;
 - (id)pathToAsset:(id)arg1;
+
 - (void)setMetadatum:(id)arg1 forKey:(id)arg2;
 - (id)metadatumForKey:(id)arg1;
+
 - (id)_addAssetsAtFileURLs:(id)arg1 createProductions:(BOOL)arg2 referenceFiles:(BOOL)arg3 bitSource:(id)arg4 customInfos:(id)arg5 sortedCustomInfos:(id *)arg6;
 - (id)addAssetsAtFileURLs:(id)arg1 createProductions:(BOOL)arg2 referenceFiles:(BOOL)arg3 bitSource:(id)arg4 customInfos:(id)arg5;
 - (id)addAssetsAtFileURLs:(id)arg1 createProductions:(BOOL)arg2;
 - (id)addAssetsAtFileURLs:(id)arg1;
 - (id)assetAtFileURL:(id)arg1;
 - (id)assetAtPath:(id)arg1;
+
 - (id)createAssetWithName:(id)arg1 fileType:(id)arg2 scaleFactor:(unsigned int)arg3 inCategory:(id)arg4 forThemeBitSource:(id)arg5;
 - (id)createAssetWithName:(id)arg1 scaleFactor:(unsigned int)arg2 inCategory:(id)arg3 forThemeBitSource:(id)arg4;
 - (id)createAssetWithName:(id)arg1 inCategory:(id)arg2 forThemeBitSource:(id)arg3;
 - (id)createElementProductionWithAsset:(id)arg1;
+
 - (id)_genericPartDefinition;
 - (void)deleteNamedAssets:(id)arg1 shouldDeleteAssetFiles:(BOOL)arg2 completionHandler:(id)arg3;
 - (void)importNamedAssetsWithImportInfos:(id)arg1 referenceFiles:(BOOL)arg2 completionHandler:(id)arg3;
@@ -229,8 +259,10 @@
 - (id)createEffectStyleProductionForPartDefinition:(id)arg1;
 - (void)_normalizeRenditionKeySpec:(id)arg1 forSchemaRendition:(id)arg2;
 - (id)createProductionWithRenditionGroup:(id)arg1 forPartDefinition:(id)arg2 artworkFormat:(id)arg3 shouldReplaceExisting:(BOOL)arg4 error:(id *)arg5;
+
 - (BOOL)createPSDReferenceArtworkForRenditionGroup:(id)arg1 atDestination:(id)arg2 error:(id *)arg3;
 - (BOOL)shouldGeneratePSDAssetFromArtFile:(id)arg1;
+
 - (id)handCraftedAssetURLForFileName:(id)arg1;
 - (id)_themeBitSourceForReferencedFilesAtURLs:(id)arg1 createIfNecessary:(BOOL)arg2;
 - (id)_themeBitSource:(id *)arg1;
@@ -255,6 +287,7 @@
 - (id)zeroCodeArtworkInfoWithIdentifier:(long long)arg1;
 - (id)psdImageRefForAsset:(id)arg1;
 - (id)constantWithName:(id)arg1 forIdentifier:(long long)arg2;
+
 - (id)iterationTypeWithIdentifier:(int)arg1;
 - (id)renditionSubtypeWithIdentifier:(unsigned int)arg1;
 - (id)renditionTypeWithIdentifier:(long long)arg1;
@@ -274,6 +307,7 @@
 - (id)partWithIdentifier:(long long)arg1;
 - (id)elementWithIdentifier:(long long)arg1;
 - (id)themeConstant:(id)arg1 withIdentifier:(long long)arg2;
+
 - (id)_cachedConstantsForEntity:(id)arg1;
 - (void)recacheThemeConstant:(id)arg1;
 - (id)arrayControllerForConstant:(id)arg1;
