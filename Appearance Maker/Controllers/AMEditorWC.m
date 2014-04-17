@@ -14,10 +14,19 @@
 @interface AMEditorWC ()
 
 /* controls */
+
 @property (weak) IBOutlet NSButton *makeNewAppearanceButton;
+
 @property (weak) IBOutlet NSPopUpButton *imageFormatPopUp;
 @property (weak) IBOutlet NSButton *createSkeletonButton;
+
+@property (weak) IBOutlet NSPopUpButton *customFontPopUp;
+@property (weak) IBOutlet NSTextField *customFontNameField;
+
 @property (weak) IBOutlet NSButton *exportAppearanceButton;
+
+/* Font customization metadata */
+@property (strong) NSMutableDictionary *customFonts;
 
 /* URL to the .uicatalog file */
 @property (copy) NSURL *catalogURL;
@@ -60,8 +69,6 @@
     [self.imageFormatPopUp setEnabled:NO];
     [self.createSkeletonButton setEnabled:NO];
     [self.exportAppearanceButton setEnabled:NO];
-    
-    [self.makeNewAppearanceButton setKeyEquivalent:@"\r"];
 }
 
 #pragma mark Actions
@@ -88,9 +95,9 @@
     
     // update the UI
     [self.makeNewAppearanceButton setKeyEquivalent:@""];
-    [self.createSkeletonButton setKeyEquivalent:@"\r"];
     [self.createSkeletonButton setEnabled:YES];
     [self.imageFormatPopUp setEnabled:YES];
+    [self.customFontPopUp setEnabled:YES];
 }
 
 /**
@@ -112,12 +119,11 @@
     [[NSWorkspace sharedWorkspace] openURL:[self.catalogURL URLByDeletingLastPathComponent]];
     
     // update the UI
-    [self.createSkeletonButton setKeyEquivalent:@""];
-    [self.exportAppearanceButton setKeyEquivalent:@"\r"];
     [self.exportAppearanceButton setEnabled:YES];
 }
 
 - (IBAction)exportAppearance:(id)sender {
+    [self customizeFonts];
     [self customizeSchemaDefinitions];
     
     // save the changes
@@ -128,7 +134,6 @@
     [self.distiller setLaunchPath:@"/System/Library/PrivateFrameworks/CoreThemeDefinition.framework/Versions/A/Resources/distill"];
     NSString *outputPath = [[self.catalogURL.path stringByDeletingPathExtension] stringByAppendingPathExtension:@"car"];
     [self.distiller setArguments:@[self.catalogURL.path, outputPath]];
-    [self.distiller setStandardOutput:[NSPipe pipe]];
     [self.distiller launch];
     
     // create sample code
@@ -143,6 +148,56 @@
     [[NSWorkspace sharedWorkspace] selectFile:outputPath inFileViewerRootedAtPath:[outputPath stringByDeletingLastPathComponent]];
 }
 
+#pragma mark Font Selection
+
+- (IBAction)customFontPopUpAction:(id)sender {
+    // reset background color to white
+    self.customFontNameField.backgroundColor = [NSColor whiteColor];
+    
+    // get font definition identifier which is the item's tag
+    NSInteger identifier = self.customFontPopUp.selectedTag;
+    
+    // identifier 99 is the "Customize font..." placeholder
+    if (identifier == 99) {
+        self.customFontNameField.stringValue = @"";
+        [self.customFontNameField setEnabled:NO];
+        return;
+    }
+    
+    // create dictionary if It doesn't exist yet
+    if (!self.customFonts) self.customFonts = [[NSMutableDictionary alloc] init];
+    
+    // insert or change the font in the dictionary
+    if ([self.customFonts objectForKey:@(identifier)]) {
+        self.customFontNameField.stringValue = [self.customFonts objectForKey:@(identifier)];
+    } else {
+        self.customFontNameField.stringValue = @"Helvetica";
+    }
+    
+    // enable the name field and move the focus to It
+    [self.customFontNameField setEnabled:YES];
+    [self.customFontNameField becomeFirstResponder];
+}
+
+- (IBAction)customFontNameFieldAction:(id)sender {
+    // the tags are the font definition identifiers
+    NSInteger identifier = self.customFontPopUp.selectedTag;
+    
+    // removes the spaces, font names in definitions should be camel case
+    NSString *finalName = [[self.customFontNameField.stringValue componentsSeparatedByString:@" "] componentsJoinedByString:@""];
+    if (!finalName || [finalName isEqualToString:@""]) return;
+    
+    // save the custom font as the value and the identifier as the key
+    [self.customFonts setObject:finalName forKey:@(identifier)];
+    
+    // make the background green to give the user some feedback
+    self.customFontNameField.backgroundColor = [NSColor colorWithRed:0.830 green:1.000 blue:0.743 alpha:1.000];
+    
+    // enable the export button, in case the user wants to customize only the fonts...
+    [self.exportAppearanceButton setEnabled:YES];
+}
+
+
 #pragma mark Appearance Customization
 
 /**
@@ -155,13 +210,10 @@
      since I don't know exactly how many elements there are,
      I just guess a number (2000 in this case) and fetch everything within this range */
     for (int i = 0; i < 2000; i++) {
-        if ([[[self.tdd elementWithIdentifier:i] displayName].lowercaseString rangeOfString:@"effect"].location != NSNotFound) {
-            // "effects" are different
-            [self.tdd customizeSchemaEffectDefinition:[self.tdd schemaDefinitionWithElementID:i] shouldReplaceExisting:NO error:nil];
-        } else {
-            // this is what exports the PSD
-            [self.tdd customizeSchemaElementDefinition:[self.tdd schemaDefinitionWithElementID:i] usingArtworkFormat:[self artworkFormat] shouldReplaceExisting:NO error:nil];
-        }
+        if ([[[self.tdd elementWithIdentifier:i] displayName].lowercaseString rangeOfString:@"effect"].location != NSNotFound) continue;
+        
+        // this is what exports the artwork files
+        [self.tdd customizeSchemaElementDefinition:[self.tdd schemaDefinitionWithElementID:i] usingArtworkFormat:[self artworkFormat] shouldReplaceExisting:NO error:nil];
     }
     
     // the following is just a test, ignore for now...
@@ -173,6 +225,25 @@
     //        }
     //        NSLog(@"-------------------------------");
     //    }
+}
+
+/**
+ Creates font definitions according to the fonts defined by
+ the user and stored in self.customFonts
+ */
+- (void)customizeFonts
+{
+    for (NSNumber *identifier in self.customFonts) {
+        // create font definition entity
+        TDFontDefinition *fontDef = [self.tdd newObjectForEntity:@"FontDefinition"];
+        // set the font name
+        fontDef.postscriptName = self.customFonts[identifier];
+        
+        // create the selector
+        TDMetafontSelector *selector = [self.tdd constantWithName:@"MetafontSelector" forIdentifier:[identifier integerValue]];
+        fontDef.selector = selector;
+        selector.definition = fontDef;
+    }
 }
 
 
