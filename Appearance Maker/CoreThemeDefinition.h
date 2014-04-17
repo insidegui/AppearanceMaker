@@ -118,6 +118,123 @@
 @property(retain, nonatomic) NSSet *elements; // @dynamic elements;
 @end
 
+@interface TDSchemaDefinition : NSManagedObject
+{
+}
+
++ (void *)elementDefinitionWithName:(id)arg1 withSchema:(id)arg2;
++ (void *)sortedElementDefinitionAtIndex:(unsigned long long)arg1 withSchema:(id)arg2;
++ (unsigned long long)elementDefinitionCountWithSchema:(id)arg1;
+- (id)displayName;
+- (id)previewImage;
+
+// Remaining properties
+@property(retain, nonatomic) TDSchemaCategory *category; // @dynamic category;
+@property(retain, nonatomic) NSString *name; // @dynamic name;
+@property(retain, nonatomic) NSSet *parts; // @dynamic parts;
+@property BOOL published; // @dynamic published;
+
+@end
+
+@interface TDSchemaElementDefinition : TDSchemaDefinition
+{
+}
+
++ (void *)elementDefinitionWithName:(id)arg1 withSchema:(id)arg2;
++ (void *)sortedElementDefinitionAtIndex:(unsigned long long)arg1 withSchema:(id)arg2;
++ (unsigned long long)elementDefinitionCountWithSchema:(id)arg1;
+
+@end
+
+@interface TDSchemaEffectDefinition : TDSchemaDefinition
+{
+}
+
++ (void *)elementDefinitionWithName:(id)arg1 withSchema:(id)arg2;
++ (void *)sortedElementDefinitionAtIndex:(unsigned long long)arg1 withSchema:(id)arg2;
++ (unsigned long long)elementDefinitionCountWithSchema:(id)arg1;
+
+@end
+
+@interface TDSchemaPartDefinition : NSManagedObject
+{
+    NSImage *previewImage;
+    NSArray *renditions;
+    NSArray *renditionGroups;
+    unsigned long long partFeatures;
+}
+
+@property(nonatomic) unsigned long long partFeatures; // @synthesize partFeatures;
+@property(retain, nonatomic) NSArray *renditionGroups; // @synthesize renditionGroups;
+@property(copy, nonatomic) NSArray *renditions; // @synthesize renditions;
+@property(retain, nonatomic) NSImage *previewImage; // @synthesize previewImage;
+- (void)didTurnIntoFault;
+- (void *)cuiPartDefinition;
+- (id)displayName;
+- (long long)partID;
+- (long long)elementID;
+- (long long)_renditionKeyValueForTokenIdentifier:(unsigned short)arg1;
+- (id)validStatesWithDocument:(id)arg1;
+- (void)updateDerivedRenditionData;
+- (id)_schema;
+- (id)bestPreviewRendition;
+
+// Remaining properties
+@property(retain, nonatomic) TDSchemaDefinition *element; // @dynamic element;
+@property(retain, nonatomic) NSString *name; // @dynamic name;
+@property(retain, nonatomic) NSSet *productions; // @dynamic productions;
+@property(retain, nonatomic) NSString *widgetID; // @dynamic widgetID;
+
+@end
+
+@class TDMetafontSizeSelector;
+
+@interface TDFontSizeDefinition : NSManagedObject
+{
+}
+
+// Remaining properties
+@property(retain, nonatomic) NSDate *dateOfLastChange; // @dynamic dateOfLastChange;
+@property(retain, nonatomic) NSNumber *pointSize; // @dynamic pointSize;
+@property(retain, nonatomic) TDMetafontSizeSelector *selector; // @dynamic selector;
+@end
+
+@class TDMetafontSelector;
+
+@interface TDFontDefinition : NSManagedObject
+{
+}
+
+
+// Remaining properties
+@property(retain, nonatomic) NSNumber *baselineOffset; // @dynamic baselineOffset;
+@property(retain, nonatomic) NSDate *dateOfLastChange; // @dynamic dateOfLastChange;
+@property(retain, nonatomic) NSString *postscriptName; // @dynamic postscriptName;
+@property(retain, nonatomic) TDMetafontSelector *selector; // @dynamic selector;
+@end
+
+@interface TDMetafontSelector : TDThemeConstant
+{
+}
+
+
+// Remaining properties
+@property(retain, nonatomic) TDFontDefinition *definition; // @dynamic definition;
+@end
+
+@interface TDMetafontSizeSelector : NSManagedObject
+{
+}
+
+
+// Remaining properties
+@property(retain, nonatomic) TDThemeSize *controlSize; // @dynamic controlSize;
+@property(retain, nonatomic) TDFontSizeDefinition *definition; // @dynamic definition;
+@property(retain, nonatomic) NSString *displayName; // @dynamic displayName;
+@property(retain, nonatomic) NSNumber *identifier; // @dynamic identifier;
+@property(retain, nonatomic) NSString *selectorName; // @dynamic selectorName;
+@end
+
 /**
  CoreThemeDocument represents an uicatalog file and Its related assets,
  used to configure an appearance
@@ -181,12 +298,12 @@
 - (id)namedEffectProductions;
 - (id)namedArtworkProductions;
 
-- (TDThemeConstant *)schemaPartDefinitionWithElementID:(NSInteger)elementID partID:(NSInteger)partID;
-- (TDThemeConstant *)schemaDefinitionWithElementID:(NSInteger)elementID;
+- (TDSchemaPartDefinition *)schemaPartDefinitionWithElementID:(NSInteger)elementID partID:(NSInteger)partID;
+- (TDSchemaElementDefinition *)schemaDefinitionWithElementID:(NSInteger)elementID;
 
-- (BOOL)customizeSchemaPartDefinition:(TDThemeConstant *)part usingArtworkFormat:(NSString *)format shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
-- (BOOL)customizeSchemaEffectDefinition:(TDThemeConstant *)part shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
-- (BOOL)customizeSchemaElementDefinition:(TDThemeConstant *)part usingArtworkFormat:(NSString *)format shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
+- (BOOL)customizeSchemaPartDefinition:(TDSchemaPartDefinition *)part usingArtworkFormat:(NSString *)format shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
+- (BOOL)customizeSchemaEffectDefinition:(TDSchemaEffectDefinition *)part shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
+- (BOOL)customizeSchemaElementDefinition:(TDSchemaElementDefinition *)part usingArtworkFormat:(NSString *)format shouldReplaceExisting:(BOOL)replace error:(NSError **)outError;
 
 - (void)removeCustomizationForSchemaDefinition:(TDThemeConstant *)definition shouldDeleteAssetFiles:(BOOL)shouldDelete;
 - (BOOL)customizationExistsForSchemaDefinition:(TDThemeConstant *)definition;
@@ -330,3 +447,4 @@
 - (void)changedObjectsNotification:(id)arg1;
 
 @end
+
