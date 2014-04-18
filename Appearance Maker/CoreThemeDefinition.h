@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Guilherme Rambo. All rights reserved.
 //
 
+#ifndef __CORETHEMEDEFINITION_H
+#define __CORETHEMEDEFINITION_H
+
 @interface TDThemeConstant : NSManagedObject
 {
     int _identifier;
@@ -235,6 +238,45 @@
 @property(retain, nonatomic) NSString *selectorName; // @dynamic selectorName;
 @end
 
+@protocol TDElementAttributes
+- (void)setAttributesFromData:(id)arg1;
+- (id)dataFromAttributes;
+@end
+
+@interface TDColorName : NSManagedObject
+{
+}
+
+
+// Remaining properties
+@property(retain, nonatomic) NSSet *colorDefinitions; // @dynamic colorDefinitions;
+@property(retain, nonatomic) NSString *colorDescription; // @dynamic colorDescription;
+@property(retain, nonatomic) NSString *displayName; // @dynamic displayName;
+@property(retain, nonatomic) NSString *illustrationURL; // @dynamic illustrationURL;
+@property(retain, nonatomic) NSNumber *isExcludedFromFilter; // @dynamic isExcludedFromFilter;
+@property(retain, nonatomic) NSString *selector; // @dynamic selector;
+@end
+
+@interface TDColorDefinition : NSManagedObject <TDElementAttributes>
+{
+}
+
+- (id)colorAsString;
+- (void)setAttributesFromCopyData:(id)arg1;
+- (id)copyDataFromAttributes;
+- (void)setAttributesFromData:(id)arg1;
+- (id)dataFromAttributes;
+- (void)copyAttributesInto:(id)arg1;
+
+// Remaining properties
+@property(retain, nonatomic) NSManagedObject *colorStatus; // @dynamic colorStatus;
+@property(retain, nonatomic) NSDate *dateOfLastChange; // @dynamic dateOfLastChange;
+@property(retain, nonatomic) TDThemeLook *look; // @dynamic look;
+@property(retain, nonatomic) TDColorName *name; // @dynamic name;
+@property(retain, nonatomic) NSNumber *physicalColor; // @dynamic physicalColor;
+
+@end
+
 /**
  CoreThemeDocument represents an uicatalog file and Its related assets,
  used to configure an appearance
@@ -448,3 +490,4 @@
 
 @end
 
+#endif

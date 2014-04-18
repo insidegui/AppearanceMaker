@@ -12,4 +12,6 @@
 
 @property (nonatomic, readonly) NSDictionary *constantArrayControllers;
 
+- (NSNumber *)physicalColorWithRed:(unsigned int)red green:(unsigned int)green blue:(unsigned int)blue alpha:(unsigned int)alpha;
+
 @end

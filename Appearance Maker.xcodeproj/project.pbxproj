@@ -16,9 +16,9 @@
 		DD4983B818FF1D0D0050A929 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4983B718FF1D0D0050A929 /* Images.xcassets */; };
 		DD4983D818FF1D950050A929 /* AMEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4983D618FF1D950050A929 /* AMEditorWC.m */; };
 		DD4983D918FF1D950050A929 /* AMEditorWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4983D718FF1D950050A929 /* AMEditorWC.xib */; };
-		DD4983DB18FF23110050A929 /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4983DA18FF23110050A929 /* CoreThemeDefinition.framework */; };
 		DD4983F418FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4983F318FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m */; };
 		DD65D02819005D5800BEB048 /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = DD65D02719005D5800BEB048 /* AMEditorAppearance.car */; };
+		DDC3FF541901ABC10014CDEC /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC3FF531901ABC10014CDEC /* CoreThemeDefinition.framework */; };
 		F40AAB0D190077BD000D4FC7 /* AppearanceMakerIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +46,7 @@
 		DD4983F218FF3F740050A929 /* CoreThemeDocument+ArrayControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreThemeDocument+ArrayControllers.h"; sourceTree = "<group>"; };
 		DD4983F318FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreThemeDocument+ArrayControllers.m"; sourceTree = "<group>"; };
 		DD65D02719005D5800BEB048 /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMEditorAppearance.car; sourceTree = "<group>"; };
+		DDC3FF531901ABC10014CDEC /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
 		F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = AppearanceMakerIcon.iconset; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,8 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC3FF541901ABC10014CDEC /* CoreThemeDefinition.framework in Frameworks */,
 				DD4983A018FF1D0D0050A929 /* Cocoa.framework in Frameworks */,
-				DD4983DB18FF23110050A929 /* CoreThemeDefinition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +84,7 @@
 		DD49839E18FF1D0D0050A929 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DDC3FF531901ABC10014CDEC /* CoreThemeDefinition.framework */,
 				DD4983DA18FF23110050A929 /* CoreThemeDefinition.framework */,
 				DD49839F18FF1D0D0050A929 /* Cocoa.framework */,
 				DD4983BE18FF1D0D0050A929 /* XCTest.framework */,
@@ -328,6 +330,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appearance Maker/Appearance Maker-Prefix.pch";
 				INFOPLIST_FILE = "Appearance Maker/Appearance Maker-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -344,6 +347,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appearance Maker/Appearance Maker-Prefix.pch";
 				INFOPLIST_FILE = "Appearance Maker/Appearance Maker-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

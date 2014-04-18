@@ -11,6 +11,8 @@
 #import "CoreThemeDefinition.h"
 #import "CoreThemeDocument+ArrayControllers.h"
 
+#define kUserKnowsTheProcessKey @"KnowsTheDrill"
+
 @interface AMEditorWC ()
 
 /* controls */
@@ -23,10 +25,17 @@
 @property (weak) IBOutlet NSPopUpButton *customFontPopUp;
 @property (weak) IBOutlet NSTextField *customFontNameField;
 
+@property (weak) IBOutlet NSPopUpButton *customColorPopUp;
+@property (weak) IBOutlet NSColorWell *customColorWell;
+
+
 @property (weak) IBOutlet NSButton *exportAppearanceButton;
 
 /* Font customization metadata */
 @property (strong) NSMutableDictionary *customFonts;
+
+/* Color customization metadata */
+@property (strong) NSMutableDictionary *customColors;
 
 /* URL to the .uicatalog file */
 @property (copy) NSURL *catalogURL;
@@ -76,8 +85,8 @@
 - (IBAction)newAppearance:(id)sender {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setAllowedFileTypes:@[@"uicatalog"]];
-    [savePanel setPrompt:@"Save"];
-    [savePanel setTitle:@"Save UI Catalog File"];
+    [savePanel setPrompt:@"Select"];
+    [savePanel setTitle:@"Select or save UI Catalog File"];
     
     // cancelled
     if (![savePanel runModal]) return;
@@ -98,6 +107,9 @@
     [self.createSkeletonButton setEnabled:YES];
     [self.imageFormatPopUp setEnabled:YES];
     [self.customFontPopUp setEnabled:YES];
+    
+    [self populateColorPopUp];
+    [self.customColorPopUp setEnabled:YES];
 }
 
 /**
@@ -112,8 +124,10 @@
     [self customizeSchemaDefinitions];
     
     // instruct the user
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Edit the assets" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Now edit the images extracted, then come back and click the \"Export Appearance button\""];
-    [alert runModal];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kUserKnowsTheProcessKey]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Edit the assets" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Now edit the images extracted, then come back and click the \"Export Appearance button\""];
+        [alert runModal];
+    }
     
     // open the folder
     [[NSWorkspace sharedWorkspace] openURL:[self.catalogURL URLByDeletingLastPathComponent]];
@@ -124,6 +138,7 @@
 
 - (IBAction)exportAppearance:(id)sender {
     [self customizeFonts];
+    [self customizeColors];
     [self customizeSchemaDefinitions];
     
     // save the changes
@@ -133,7 +148,7 @@
     self.distiller = [NSTask new];
     [self.distiller setLaunchPath:@"/System/Library/PrivateFrameworks/CoreThemeDefinition.framework/Versions/A/Resources/distill"];
     NSString *outputPath = [[self.catalogURL.path stringByDeletingPathExtension] stringByAppendingPathExtension:@"car"];
-    [self.distiller setArguments:@[self.catalogURL.path, outputPath]];
+    [self.distiller setArguments:@[self.catalogURL.path, outputPath, @"LogWarningsAndErrors"]];
     [self.distiller launch];
     
     // create sample code
@@ -141,8 +156,12 @@
                       [[outputPath lastPathComponent] stringByDeletingPathExtension]];
     
     // instruct the user
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Use your custom appearance" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Now you can use your custom appearance. Put the .car file in your app's resources and set It on your window or individual controls:\n\n%@", code];
-    [alert runModal];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kUserKnowsTheProcessKey]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserKnowsTheProcessKey];
+        
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Use your custom appearance" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Now you can use your custom appearance. Put the .car file in your app's resources and set It on your window or individual controls:\n\n%@", code];
+        [alert runModal];
+    }
     
     // reveal the .car in Finder
     [[NSWorkspace sharedWorkspace] selectFile:outputPath inFileViewerRootedAtPath:[outputPath stringByDeletingLastPathComponent]];
@@ -165,7 +184,7 @@
     }
     
     // create dictionary if It doesn't exist yet
-    if (!self.customFonts) self.customFonts = [[NSMutableDictionary alloc] init];
+    if (!self.customFonts) self.customFonts = [NSMutableDictionary new];
     
     // insert or change the font in the dictionary
     if ([self.customFonts objectForKey:@(identifier)]) {
@@ -197,6 +216,46 @@
     [self.exportAppearanceButton setEnabled:YES];
 }
 
+#pragma mark Color Selection
+
+- (void)populateColorPopUp
+{
+    NSArray *colors = [self.tdd allObjectsForEntity:@"ColorName" withSortDescriptors:nil];
+    for (TDColorName *color in colors) {
+        [self.customColorPopUp addItemWithTitle:color.displayName];
+    }
+}
+
+- (IBAction)customColorPopUpAction:(id)sender {
+    // identifier 99 is the "Customize Color..." placeholder
+    if (self.customColorPopUp.selectedTag == 99) {
+        [self.customColorWell setEnabled:NO];
+        return;
+    }
+    
+    // create dictionary if It doesn't exist yet
+    if (!self.customColors) self.customColors = [NSMutableDictionary new];
+    
+    if ([self.customColors objectForKey:self.customColorPopUp.selectedItem.title]) {
+        // set the color of the color well to the custom color
+        [self.customColorWell setColor:[self.customColors objectForKey:self.customColorPopUp.selectedItem.title]];
+    } else {
+        // set the color of the color well to the default color
+        NSString *selectorName = [self colorNameWithDisplayName:self.customColorPopUp.selectedItem.title].selector;
+        SEL selector = NSSelectorFromString(selectorName);
+        NSColor *defaultColor = [NSClassFromString(@"NSColor") performSelector:selector];
+        [self.customColorWell setColor:defaultColor];
+    }
+    
+    [self.customColorWell setEnabled:YES];
+}
+
+- (IBAction)customColorWellAction:(id)sender {
+    // save custom color
+    [self.customColors setObject:self.customColorWell.color forKey:self.customColorPopUp.selectedItem.title];
+    
+    [self.exportAppearanceButton setEnabled:YES];
+}
 
 #pragma mark Appearance Customization
 
@@ -233,6 +292,9 @@
  */
 - (void)customizeFonts
 {
+    // delete old entities
+    [self.tdd deleteObjects:[self.tdd allObjectsForEntity:@"FontDefinition" withSortDescriptors:nil]];
+    
     for (NSNumber *identifier in self.customFonts) {
         // create font definition entity
         TDFontDefinition *fontDef = [self.tdd newObjectForEntity:@"FontDefinition"];
@@ -246,5 +308,57 @@
     }
 }
 
+- (void)customizeColors
+{
+    // delete old entities
+    [self.tdd deleteObjects:[self.tdd allObjectsForEntity:@"ColorDefinition" withSortDescriptors:nil]];
+    
+    for (NSString *displayName in self.customColors.allKeys) {
+        // create color name
+        TDColorName *name = [self colorNameWithDisplayName:displayName];
+        
+        // get NSColor associated with this entry
+        NSColor *ns_color = self.customColors[displayName];
+        
+        // convert to physical color
+        NSNumber *physicalColor = [self physicalColorWithNSColor:ns_color];
+        
+        // perform customization
+        [self customizeColor:name withPhysicalColor:physicalColor];
+    }
+}
+
+- (void)customizeColor:(TDColorName *)colorName withPhysicalColor:(NSNumber *)physicalColor
+{
+    // create a color definition for the specified color name in every look available
+    for (TDThemeLook *look in [self.tdd.constantArrayControllers[@"ThemeLook"] arrangedObjects]) {
+        TDColorDefinition *colorDef = [self.tdd newObjectForEntity:@"ColorDefinition"];
+        colorDef.name = colorName;
+        colorDef.physicalColor = physicalColor;
+        colorDef.look = look;
+        colorDef.dateOfLastChange = [NSDate date];
+        // set color status to "done"
+        colorDef.colorStatus = [self.tdd constantWithName:@"ColorStatus" forIdentifier:1];
+    }
+}
+
+/**
+ Returns the instance of TDColorName with the specified displayName
+ */
+- (TDColorName *)colorNameWithDisplayName:(NSString *)displayName
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayName = %@", displayName];
+    NSArray *filtered = [[self.tdd allObjectsForEntity:@"ColorName" withSortDescriptors:nil] filteredArrayUsingPredicate:predicate];
+    
+    return [filtered firstObject];
+}
+
+/**
+ Converts an instance of NSColor to a physical color
+ */
+- (NSNumber *)physicalColorWithNSColor:(NSColor *)color
+{
+    return [self.tdd physicalColorWithRed:color.redComponent*255 green:color.greenComponent*255 blue:color.blueComponent*255 alpha:color.alphaComponent*255];
+}
 
 @end
