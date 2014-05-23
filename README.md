@@ -33,13 +33,17 @@ If you want to compile your uicatalog file automatically when you build your pro
 3. Go to "Build Rules" and click the "+" button to create a custom build rule
 4. Leave "Source files with names matching:" selected and insert "*.uicatalog" in the text field
 5. Leave "Custom Script:" selected and insert the following script:
-	
-	#!/bin/bash
-	/System/Library/PrivateFrameworks/CoreThemeDefinition.framework/Versions/A/Resources/distill ${INPUT_FILE_PATH} ${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}.car LogWarningsAndErrors
+
+```	
+#!/bin/bash
+/System/Library/PrivateFrameworks/CoreThemeDefinition.framework/Versions/A/Resources/distill ${INPUT_FILE_PATH} ${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}.car LogWarningsAndErrors
+```
 	
 6. Under "Output files", click the "+" button and add this:
 
-	$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).car
+```
+$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).car
+```
 
 Now, whenever you build your Xcode project, the car file will be created and put in your bundle's resources directory ;)
 
