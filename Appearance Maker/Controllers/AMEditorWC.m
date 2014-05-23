@@ -292,6 +292,8 @@
  */
 - (void)customizeFonts
 {
+    if (!self.customFonts) return;
+    
     // delete old entities
     [self.tdd deleteObjects:[self.tdd allObjectsForEntity:@"FontDefinition" withSortDescriptors:nil]];
     
@@ -310,6 +312,8 @@
 
 - (void)customizeColors
 {
+    if (!self.customColors) return;
+    
     // delete old entities
     [self.tdd deleteObjects:[self.tdd allObjectsForEntity:@"ColorDefinition" withSortDescriptors:nil]];
     

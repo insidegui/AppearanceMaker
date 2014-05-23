@@ -24,6 +24,22 @@ Appearance Maker itself uses a custom appearance:
 
 ![screenshot](https://raw.github.com/insidegui/AppearanceMaker/master/screenshot_1.png)
 
+## Automatic Compilation With Xcode Build Rule
+
+If you want to compile your uicatalog file automatically when you build your project, follow the steps:
+
+1. Use appearance maker to create a uicatalog file, export the assets and configure the fonts and colors as you want
+2. Add the uicatalog file to your Xcode project, make sure It's listed under the "Copy Bundle Resources" section in your build phases
+3. Go to "Build Rules" and click the "+" button to create a custom build rule
+4. Leave "Source files with names matching:" selected and insert "*.uicatalog" in the text field
+5. Leave "Custom Script:" selected and insert the following script:
+	#!/bin/bash
+	/System/Library/PrivateFrameworks/CoreThemeDefinition.framework/Versions/A/Resources/distill ${INPUT_FILE_PATH} ${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}.car LogWarningsAndErrors
+6. Under "Output files", click the "+" button and add this:
+	$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).car
+
+Now, whenever you build your Xcode project, the car file will be created and put in your bundle's resources directory ;)
+
 ## Can I use this and sell on the App Store?
 
 Well, here's the thing: we are using private APIs to create the custom file, but NSAppearance itself is public, so the bottom line is yes, you can!
