@@ -2,6 +2,10 @@
 
 Create custom appearances to customize your app's look with NSAppearance
 
+# OS X 10.10
+
+Appearance Maker does work on OS X 10.10, but some of the artwork exported doesn't match the new look.
+
 ## What's NSAppearance?
 
 [Check the docs](https://developer.apple.com/library/mac/documentation/AppKit/Reference/NSAppearance_Class/Reference/Reference.html). Even though Apple states you can create a custom appearance using Xcode, this is not currently available, so I've created this simple app that lets you make custom appearances.
