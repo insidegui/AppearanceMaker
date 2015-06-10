@@ -2,6 +2,10 @@
 
 Create custom appearances to customize your app's look with NSAppearance
 
+# OS X El Capitan
+
+In Yosemite, Appearance Maker didn't work because of changes in the private APIs used. I've done some testing on El Capitan and It looks like the APIs are fixed now, so I'll be releasing a new (totally rewritten, much better) version soon. Stay tuned!
+
 # OS X 10.10
 
 Appearance Maker does work on OS X 10.10, but some of the artwork exported doesn't match the new look.
