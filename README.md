@@ -2,7 +2,7 @@
 
 Create custom appearances to customize your app's look with NSAppearance
 
-![screenshot](https://raw.github.com/insidegui/AppearanceMaker/master/screenshot_1.png)
+![screenshot](https://raw.github.com/insidegui/AppearanceMaker/master/screenshot_new.png)
 
 # OS X El Capitan
 
