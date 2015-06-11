@@ -14,8 +14,6 @@
 
 @interface AMElementsEditorViewController () <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (nonatomic, readonly) AMThemeDocument *document;
-
 @property (weak) IBOutlet NSVisualEffectView *topBarView;
 @property (weak) IBOutlet NSVisualEffectView *bottomBarView;
 @property (weak) IBOutlet NSTableView *tableView;
@@ -52,11 +50,6 @@
     [super viewWillAppear];
     
     self.view.appearance = [AMEditorAppearance appearance];
-}
-
-- (AMThemeDocument *)document
-{
-    return (AMThemeDocument *)self.representedObject;
 }
 
 - (void)setRepresentedObject:(id __nullable)representedObject

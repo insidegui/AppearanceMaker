@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AMColorsEditorViewController : NSViewController
+#import "AMDocumentBasedViewController.h"
+
+@interface AMColorsEditorViewController : AMDocumentBasedViewController
 
 @end

@@ -61,9 +61,8 @@
     dispatch_queue_t distillerQueue = dispatch_queue_create("Distiller", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(distillerQueue, ^{
         TDDistillRunner *runner = [[TDDistillRunner alloc] init];
-        AMThemeDocument *doc = (AMThemeDocument *)self.representedObject;
-        
-        BOOL result = [runner runDistillWithDocumentURL:doc.fileURL outputURL:[self previewCarURL] attemptIncremental:NO forceDistill:NO];
+
+        BOOL result = [runner runDistillWithDocumentURL:self.document.fileURL outputURL:[self previewCarURL] attemptIncremental:NO forceDistill:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result) {

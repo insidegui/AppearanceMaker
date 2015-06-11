@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AMPreviewViewController : NSViewController
+#import "AMDocumentBasedViewController.h"
+
+@interface AMPreviewViewController : AMDocumentBasedViewController
 
 @end

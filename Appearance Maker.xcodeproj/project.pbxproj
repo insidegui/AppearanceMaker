@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512874581B29CE91000B69A3 /* AMDocumentBasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */; };
 		51A2C2AE1B291C5D002B5971 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2AD1B291C5D002B5971 /* AppDelegate.m */; };
 		51A2C2B11B291C5D002B5971 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B01B291C5D002B5971 /* main.m */; };
 		51A2C2B41B291C5D002B5971 /* AMEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B31B291C5D002B5971 /* AMEditorViewController.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		512874561B29CE91000B69A3 /* AMDocumentBasedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDocumentBasedViewController.h; sourceTree = "<group>"; };
+		512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDocumentBasedViewController.m; sourceTree = "<group>"; };
 		51A2C2A91B291C5D002B5971 /* Appearance Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appearance Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A2C2AC1B291C5D002B5971 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51A2C2AD1B291C5D002B5971 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				51E9DAD81B29364B0031E002 /* AMColorsEditorViewController.m */,
 				51E9DADA1B2936700031E002 /* AMPreviewViewController.h */,
 				51E9DADB1B2936700031E002 /* AMPreviewViewController.m */,
+				512874561B29CE91000B69A3 /* AMDocumentBasedViewController.h */,
+				512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				51E9DAF71B2947F20031E002 /* AMEditorAppearance.m in Sources */,
 				51E9DADF1B29393A0031E002 /* AMBackgroundView.m in Sources */,
 				51A2C2AE1B291C5D002B5971 /* AppDelegate.m in Sources */,
+				512874581B29CE91000B69A3 /* AMDocumentBasedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +529,7 @@
 				51E9DAE91B293B540031E002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

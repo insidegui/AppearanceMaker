@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AMFontsEditorViewController : NSViewController
+#import "AMDocumentBasedViewController.h"
+
+@interface AMFontsEditorViewController : AMDocumentBasedViewController
 
 @end

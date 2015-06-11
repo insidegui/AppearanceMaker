@@ -7,6 +7,7 @@
 //
 
 #import "AMColorsEditorViewController.h"
+#import "AMThemeDocument.h"
 
 @interface AMColorsEditorViewController ()
 
@@ -17,6 +18,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+- (void)viewDidAppear
+{
+    [super viewDidAppear];
+    
+    [self loadColors];
+}
+
+- (void)loadColors
+{
+
 }
 
 @end
