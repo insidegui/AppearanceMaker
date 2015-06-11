@@ -5,30 +5,24 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>AppearanceMakerIcon</string>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2014 Guilherme Rambo. All rights reserved.</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>Copyright © 2015 Guilherme Rambo. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string></string>
 </dict>
 </plist>

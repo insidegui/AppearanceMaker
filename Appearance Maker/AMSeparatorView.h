@@ -1,5 +1,5 @@
 //
-//  main.m
+//  AMSeparatorView.h
 //  Appearance Maker
 //
 //  Created by Guilherme Rambo on 10/06/15.
@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-int main(int argc, const char * argv[]) {
-    return NSApplicationMain(argc, argv);
-}
+IB_DESIGNABLE
+@interface AMSeparatorView : NSView
+
+@property (nonatomic, copy) NSColor *color;
+
+@end
