@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		517123B81B2859B900B172DE /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = 517123B71B2859B200B172DE /* AMEditorAppearance.car */; };
 		DD4983A018FF1D0D0050A929 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD49839F18FF1D0D0050A929 /* Cocoa.framework */; };
 		DD4983AA18FF1D0D0050A929 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD4983A818FF1D0D0050A929 /* InfoPlist.strings */; };
 		DD4983AC18FF1D0D0050A929 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4983AB18FF1D0D0050A929 /* main.m */; };
@@ -17,12 +18,12 @@
 		DD4983D818FF1D950050A929 /* AMEditorWC.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4983D618FF1D950050A929 /* AMEditorWC.m */; };
 		DD4983D918FF1D950050A929 /* AMEditorWC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4983D718FF1D950050A929 /* AMEditorWC.xib */; };
 		DD4983F418FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4983F318FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m */; };
-		DD65D02819005D5800BEB048 /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = DD65D02719005D5800BEB048 /* AMEditorAppearance.car */; };
 		DDC3FF541901ABC10014CDEC /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC3FF531901ABC10014CDEC /* CoreThemeDefinition.framework */; };
 		F40AAB0D190077BD000D4FC7 /* AppearanceMakerIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		517123B71B2859B200B172DE /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; name = AMEditorAppearance.car; path = ../../../../../../../../Users/guilhermerambo/Documents/AMEditorAppearance.car; sourceTree = "<group>"; };
 		DD49839C18FF1D0D0050A929 /* Appearance Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appearance Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD49839F18FF1D0D0050A929 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DD4983A218FF1D0D0050A929 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -45,7 +46,6 @@
 		DD4983DA18FF23110050A929 /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
 		DD4983F218FF3F740050A929 /* CoreThemeDocument+ArrayControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreThemeDocument+ArrayControllers.h"; sourceTree = "<group>"; };
 		DD4983F318FF3F740050A929 /* CoreThemeDocument+ArrayControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreThemeDocument+ArrayControllers.m"; sourceTree = "<group>"; };
-		DD65D02719005D5800BEB048 /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMEditorAppearance.car; sourceTree = "<group>"; };
 		DDC3FF531901ABC10014CDEC /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
 		F40AAB0C190077BD000D4FC7 /* AppearanceMakerIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = AppearanceMakerIcon.iconset; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,7 +122,7 @@
 		DD4983A618FF1D0D0050A929 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DD65D02719005D5800BEB048 /* AMEditorAppearance.car */,
+				517123B71B2859B200B172DE /* AMEditorAppearance.car */,
 				DD4983A718FF1D0D0050A929 /* Appearance Maker-Info.plist */,
 				DD4983A818FF1D0D0050A929 /* InfoPlist.strings */,
 				DD4983AB18FF1D0D0050A929 /* main.m */,
@@ -169,7 +169,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AM;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Guilherme Rambo";
 			};
 			buildConfigurationList = DD49839718FF1D0C0050A929 /* Build configuration list for PBXProject "Appearance Maker" */;
@@ -198,10 +198,10 @@
 				DD4983D918FF1D950050A929 /* AMEditorWC.xib in Resources */,
 				DD4983AA18FF1D0D0050A929 /* InfoPlist.strings in Resources */,
 				F40AAB0D190077BD000D4FC7 /* AppearanceMakerIcon.iconset in Resources */,
+				517123B81B2859B900B172DE /* AMEditorAppearance.car in Resources */,
 				DD4983B818FF1D0D0050A929 /* Images.xcassets in Resources */,
 				DD4983B018FF1D0D0050A929 /* Credits.rtf in Resources */,
 				DD4983B618FF1D0D0050A929 /* MainMenu.xib in Resources */,
-				DD65D02819005D5800BEB048 /* AMEditorAppearance.car in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +266,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -330,7 +331,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appearance Maker/Appearance Maker-Prefix.pch";
 				INFOPLIST_FILE = "Appearance Maker/Appearance Maker-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -347,7 +349,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appearance Maker/Appearance Maker-Prefix.pch";
 				INFOPLIST_FILE = "Appearance Maker/Appearance Maker-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

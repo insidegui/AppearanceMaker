@@ -269,7 +269,7 @@
      since I don't know exactly how many elements there are,
      I just guess a number (2000 in this case) and fetch everything within this range */
     for (int i = 0; i < 2000; i++) {
-        if ([[[self.tdd elementWithIdentifier:i] displayName].lowercaseString rangeOfString:@"effect"].location != NSNotFound) continue;
+        if ([[[[self.tdd elementWithIdentifier:i] displayName] lowercaseString] rangeOfString:@"effect"].location != NSNotFound) continue;
         
         // this is what exports the artwork files
         [self.tdd customizeSchemaElementDefinition:[self.tdd schemaDefinitionWithElementID:i] usingArtworkFormat:[self artworkFormat] shouldReplaceExisting:NO error:nil];
