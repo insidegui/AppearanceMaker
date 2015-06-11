@@ -13,6 +13,9 @@
 @end
 
 @implementation AMThemeDocument
+{
+    TDThemeLook *_defaultLook;
+}
 
 + (BOOL)autosavesInPlace
 {
@@ -39,6 +42,16 @@
     if (!_defaultSortDescriptors) _defaultSortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES]];
     
     return _defaultSortDescriptors;
+}
+
+- (TDThemeLook *)defaultLook
+{
+    if (!_defaultLook) {
+        NSArray *looks = [self objectsForEntity:@"ThemeLook" withPredicate:[NSPredicate predicateWithFormat:@"displayName = \"Luna\""] sortDescriptors:self.defaultSortDescriptors];
+        _defaultLook = looks[0];
+    }
+    
+    return _defaultLook;
 }
 
 - (IBAction)exportAppearance:(id)sender

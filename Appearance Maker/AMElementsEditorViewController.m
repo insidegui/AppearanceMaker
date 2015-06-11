@@ -10,7 +10,6 @@
 
 #import "AMThemeDocument.h"
 #import "AMPartTableCellView.h"
-#import "AMEditorAppearance.h"
 
 @interface AMElementsEditorViewController () <NSTableViewDataSource, NSTableViewDelegate>
 
@@ -43,13 +42,6 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-}
-
-- (void)viewWillAppear
-{
-    [super viewWillAppear];
-    
-    self.view.appearance = [AMEditorAppearance appearance];
 }
 
 - (void)setRepresentedObject:(id __nullable)representedObject

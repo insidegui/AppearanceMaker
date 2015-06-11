@@ -11,6 +11,7 @@
 #import "TDSchemaCategory.h"
 #import "TDSchemaDefinition.h"
 #import "TDDistillRunner.h"
+#import "TDColor.h"
 
 @interface CoreThemeDocument : NSPersistentDocument
 

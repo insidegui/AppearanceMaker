@@ -9,6 +9,7 @@
 #import "AMDocumentBasedViewController.h"
 
 #import "AMThemeDocument.h"
+#import "AMEditorAppearance.h"
 
 @interface AMDocumentBasedViewController ()
 
@@ -21,6 +22,13 @@
     if (![self.representedObject isKindOfClass:[AMThemeDocument class]]) return nil;
     
     return (AMThemeDocument *)self.representedObject;
+}
+
+- (void)viewWillAppear
+{
+    [super viewWillAppear];
+    
+    self.view.appearance = [AMEditorAppearance appearance];
 }
 
 @end

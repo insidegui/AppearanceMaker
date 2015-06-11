@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		512874581B29CE91000B69A3 /* AMDocumentBasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */; };
+		5128745D1B29E091000B69A3 /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */; };
 		51A2C2AE1B291C5D002B5971 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2AD1B291C5D002B5971 /* AppDelegate.m */; };
 		51A2C2B11B291C5D002B5971 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B01B291C5D002B5971 /* main.m */; };
 		51A2C2B41B291C5D002B5971 /* AMEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B31B291C5D002B5971 /* AMEditorViewController.m */; };
 		51A2C2B71B291C5D002B5971 /* AMThemeDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B61B291C5D002B5971 /* AMThemeDocument.m */; };
 		51A2C2B91B291C5D002B5971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A2C2B81B291C5D002B5971 /* Assets.xcassets */; };
 		51A2C2BC1B291C5D002B5971 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51A2C2BA1B291C5D002B5971 /* Main.storyboard */; };
-		51A2C2C81B291DF7002B5971 /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A2C2C71B291DF7002B5971 /* CoreThemeDefinition.framework */; };
 		51A2C2CB1B291E23002B5971 /* AMElementsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2CA1B291E23002B5971 /* AMElementsEditorViewController.m */; };
 		51A2C2CF1B291E4A002B5971 /* AMFontsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2CD1B291E4A002B5971 /* AMFontsEditorViewController.m */; };
 		51A2C2D71B2927EF002B5971 /* AMSeparatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2D61B2927EF002B5971 /* AMSeparatorView.m */; };
@@ -41,6 +41,8 @@
 /* Begin PBXFileReference section */
 		512874561B29CE91000B69A3 /* AMDocumentBasedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDocumentBasedViewController.h; sourceTree = "<group>"; };
 		512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDocumentBasedViewController.m; sourceTree = "<group>"; };
+		512874591B29D076000B69A3 /* TDColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDColor.h; sourceTree = "<group>"; };
+		5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
 		51A2C2A91B291C5D002B5971 /* Appearance Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appearance Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A2C2AC1B291C5D002B5971 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51A2C2AD1B291C5D002B5971 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,7 +55,6 @@
 		51A2C2BB1B291C5D002B5971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51A2C2BD1B291C5D002B5971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51A2C2C41B291CA2002B5971 /* CoreThemeDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreThemeDocument.h; sourceTree = "<group>"; };
-		51A2C2C71B291DF7002B5971 /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
 		51A2C2C91B291E23002B5971 /* AMElementsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMElementsEditorViewController.h; sourceTree = "<group>"; };
 		51A2C2CA1B291E23002B5971 /* AMElementsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMElementsEditorViewController.m; sourceTree = "<group>"; };
 		51A2C2CC1B291E4A002B5971 /* AMFontsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFontsEditorViewController.h; sourceTree = "<group>"; };
@@ -86,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51A2C2C81B291DF7002B5971 /* CoreThemeDefinition.framework in Frameworks */,
+				5128745D1B29E091000B69A3 /* CoreThemeDefinition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +104,7 @@
 		51A2C2A01B291C5D002B5971 = {
 			isa = PBXGroup;
 			children = (
-				51A2C2C71B291DF7002B5971 /* CoreThemeDefinition.framework */,
+				5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */,
 				51A2C2AB1B291C5D002B5971 /* Appearance Maker */,
 				51E9DAE51B293B540031E002 /* AppearancePreview */,
 				51A2C2AA1B291C5D002B5971 /* Products */,
@@ -152,6 +153,7 @@
 				51A2C2D21B292104002B5971 /* TDThemeConstant.h */,
 				51A2C2D31B2923A7002B5971 /* TDSchemaDefinition.h */,
 				51E9DAED1B293BA30031E002 /* TDDistillRunner.h */,
+				512874591B29D076000B69A3 /* TDColor.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";

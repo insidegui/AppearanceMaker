@@ -13,6 +13,7 @@
 @interface AMThemeDocument : CoreThemeDocument
 
 @property (nonatomic, strong) NSArray <NSSortDescriptor *> *defaultSortDescriptors;
+@property (nonatomic, readonly) TDThemeLook *defaultLook;
 
 @end
 
