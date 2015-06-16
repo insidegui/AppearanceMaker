@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		512874581B29CE91000B69A3 /* AMDocumentBasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */; };
 		5128745D1B29E091000B69A3 /* CoreThemeDefinition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */; };
+		518B94491B2F8C5D004008A6 /* CoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518B94481B2F8C5D004008A6 /* CoreUI.framework */; };
+		518B944E1B2F92C3004008A6 /* AMSystemThemeStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 518B944D1B2F92C3004008A6 /* AMSystemThemeStore.m */; };
 		51A2C2AE1B291C5D002B5971 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2AD1B291C5D002B5971 /* AppDelegate.m */; };
 		51A2C2B11B291C5D002B5971 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B01B291C5D002B5971 /* main.m */; };
 		51A2C2B41B291C5D002B5971 /* AMEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A2C2B31B291C5D002B5971 /* AMEditorViewController.m */; };
@@ -43,6 +45,11 @@
 		512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDocumentBasedViewController.m; sourceTree = "<group>"; };
 		512874591B29D076000B69A3 /* TDColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDColor.h; sourceTree = "<group>"; };
 		5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
+		518B94481B2F8C5D004008A6 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = ../../../../../../../System/Library/PrivateFrameworks/CoreUI.framework; sourceTree = "<group>"; };
+		518B944A1B2F8C76004008A6 /* CUIStructuredThemeStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUIStructuredThemeStore.h; sourceTree = "<group>"; };
+		518B944B1B2F8EF9004008A6 /* CUICatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUICatalog.h; sourceTree = "<group>"; };
+		518B944C1B2F92C3004008A6 /* AMSystemThemeStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSystemThemeStore.h; sourceTree = "<group>"; };
+		518B944D1B2F92C3004008A6 /* AMSystemThemeStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSystemThemeStore.m; sourceTree = "<group>"; };
 		51A2C2A91B291C5D002B5971 /* Appearance Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appearance Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A2C2AC1B291C5D002B5971 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51A2C2AD1B291C5D002B5971 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				518B94491B2F8C5D004008A6 /* CoreUI.framework in Frameworks */,
 				5128745D1B29E091000B69A3 /* CoreThemeDefinition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +112,7 @@
 		51A2C2A01B291C5D002B5971 = {
 			isa = PBXGroup;
 			children = (
+				518B94481B2F8C5D004008A6 /* CoreUI.framework */,
 				5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */,
 				51A2C2AB1B291C5D002B5971 /* Appearance Maker */,
 				51E9DAE51B293B540031E002 /* AppearancePreview */,
@@ -154,6 +163,8 @@
 				51A2C2D31B2923A7002B5971 /* TDSchemaDefinition.h */,
 				51E9DAED1B293BA30031E002 /* TDDistillRunner.h */,
 				512874591B29D076000B69A3 /* TDColor.h */,
+				518B944A1B2F8C76004008A6 /* CUIStructuredThemeStore.h */,
+				518B944B1B2F8EF9004008A6 /* CUICatalog.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -216,6 +227,8 @@
 			children = (
 				51E9DAF51B2947F20031E002 /* AMEditorAppearance.h */,
 				51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */,
+				518B944C1B2F92C3004008A6 /* AMSystemThemeStore.h */,
+				518B944D1B2F92C3004008A6 /* AMSystemThemeStore.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -334,6 +347,7 @@
 				51E9DADF1B29393A0031E002 /* AMBackgroundView.m in Sources */,
 				51A2C2AE1B291C5D002B5971 /* AppDelegate.m in Sources */,
 				512874581B29CE91000B69A3 /* AMDocumentBasedViewController.m in Sources */,
+				518B944E1B2F92C3004008A6 /* AMSystemThemeStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

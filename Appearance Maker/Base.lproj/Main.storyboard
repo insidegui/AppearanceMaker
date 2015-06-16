@@ -1278,7 +1278,7 @@ DQ
         <scene sceneID="Ry8-Yp-5Pc">
             <objects>
                 <viewController title="Colors" id="8fv-Bs-zaB" customClass="AMColorsEditorViewController" sceneMemberID="viewController">
-                    <view key="view" id="vlJ-XU-ILQ">
+                    <view key="view" wantsLayer="YES" id="vlJ-XU-ILQ">
                         <rect key="frame" x="0.0" y="0.0" width="716" height="337"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

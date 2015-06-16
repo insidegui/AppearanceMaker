@@ -8,6 +8,7 @@
 
 #import "AMColorsEditorViewController.h"
 #import "AMThemeDocument.h"
+#import "AMSystemThemeStore.h"
 
 @interface AMColorsEditorViewController ()
 
@@ -34,12 +35,18 @@
 {
     [super viewDidAppear];
     
-    [self loadLooks];
+    [self loadColors];
 }
 
-- (void)loadLooks
+- (void)loadColors
 {
-    self.colorNames = [self.document allObjectsForEntity:@"ColorName" withSortDescriptors:self.document.defaultSortDescriptors];
+    NSArray *colors = [self.document allObjectsForEntity:@"ColorName" withSortDescriptors:self.document.defaultSortDescriptors];
+    NSMutableArray *finalColors = [[NSMutableArray alloc] initWithCapacity:colors.count];
+    for (TDColorName *colorName in colors) {
+        if (![[AMSystemThemeStore defaultStore] hasPhysicalColorWithName:colorName.selector] && !colorName.colorDefinitions.count) continue;
+        [finalColors addObject:colorName];
+    }
+    self.colorNames = [finalColors copy];
 }
 
 #pragma mark Color selection
@@ -84,34 +91,32 @@
         self.currentColorDefinition.look = self.document.defaultLook;
         self.currentColorDefinition.dateOfLastChange = [NSDate date];
 
+        NSLog(@"%@", [self.document allObjectsForEntity:@"ColorStatus" withSortDescriptors:self.document.defaultSortDescriptors]);
         self.currentColorDefinition.colorStatus = [self.document constantWithName:@"ColorStatus" forIdentifier:1];
-        if ([NSColor respondsToSelector:NSSelectorFromString(self.selectedColorName.selector)]) {
-            self.colorWell.color = [NSColor performSelector:NSSelectorFromString(self.selectedColorName.selector)];
-            [self colorWellAction:self.colorWell];
+    }
+    
+    NSLog(@"%@", self.currentColorDefinition.colorStatus);
+    
+    [self updateColorWell];
+}
+
+- (void)updateColorWell
+{
+    if (self.currentColorDefinition.physicalColor && ![self.currentColorDefinition.physicalColor isEqualTo:@0]) {
+        self.colorWell.color = [AMSystemThemeStore colorWithPhysicalColor:self.currentColorDefinition.physicalColor];
+    } else {
+        colordef_t colorDef;
+        if ([[AMSystemThemeStore defaultStore] getPhysicalColor:&colorDef withName:self.selectedColorName.selector]) {
+            self.colorWell.color = [AMSystemThemeStore colorWithColorDef:colorDef];
         }
     }
+    
+    [self colorWellAction:self.colorWell];
 }
 
 - (IBAction)colorWellAction:(id)sender
 {
-    // TODO: update selected color definition
-}
-
-#pragma mark Color conversion
-
-- (__nullable NSNumber *)physicalColorWithNSColor:(NSColor *)color
-{
-    return [self physicalColorWithRed:color.redComponent*255 green:color.greenComponent*255 blue:color.blueComponent*255 alpha:color.alphaComponent*255];
-}
-
-- (NSNumber *)physicalColorWithRed:(unsigned int)red green:(unsigned int)green blue:(unsigned int)blue alpha:(unsigned int)alpha
-{
-    unsigned int tmp1 = green << 0x8 & 0xffff;
-    tmp1 = tmp1 | (red << 0x10 & 0xff0000);
-    unsigned int tmp2 = (blue & 0xff) | tmp1;
-    unsigned int output = (tmp2 | alpha << 0x18);
-    
-    return @(output);
+    self.currentColorDefinition.physicalColor = [AMSystemThemeStore physicalColorWithColor:self.colorWell.color];
 }
 
 @end
