@@ -27,9 +27,7 @@
     [self addWindowController:windowController];
     [windowController.contentViewController setRepresentedObject:self];
     
-    if (!self.fileURL) {
-        [self saveDocumentWithDelegate:self didSaveSelector:@selector(firstSaveDidEnd:didSave:contextInfo:) contextInfo:0];
-    }
+    [super windowControllerDidLoadNib:windowController];
 }
 
 - (NSString *)persistentStoreTypeForFileType:(NSString *)type
