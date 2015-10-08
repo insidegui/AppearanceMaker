@@ -125,7 +125,7 @@
 {
     NSError *error;
     if ([self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {
-        [[NSWorkspace sharedWorkspace] selectFile:self.document.themeBitSourceURL.path inFileViewerRootedAtPath:nil];
+        [[NSWorkspace sharedWorkspace] selectFile:self.document.themeBitSourceURL.path inFileViewerRootedAtPath:self.document.themeBitSourceURL.path.stringByDeletingLastPathComponent];
     } else {
         [[NSAlert alertWithError:error] beginSheetModalForWindow:self.document.windowForSheet completionHandler:nil];
     }
