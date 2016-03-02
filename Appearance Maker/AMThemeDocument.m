@@ -26,6 +26,8 @@
     NSWindowController *windowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Document Window Controller"];
     [self addWindowController:windowController];
     [windowController.contentViewController setRepresentedObject:self];
+
+    self.minimumDeploymentVersion = @"10.11";
     
     [super windowControllerDidLoadNib:windowController];
 }
