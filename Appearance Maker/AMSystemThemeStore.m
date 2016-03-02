@@ -115,7 +115,7 @@
             break;
     }
 
-    NSString *hexString = [NSString stringWithFormat:@"%02X%02X%02X%02X", blue, green, red, alpha];
+    NSString *hexString = [NSString stringWithFormat:@"%02X%02X%02X%02X", alpha, red, green, blue];
     NSScanner *scanner = [[NSScanner alloc] initWithString:hexString];
     
     unsigned long long number = 0;
