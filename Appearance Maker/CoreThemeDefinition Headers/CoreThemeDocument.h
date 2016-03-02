@@ -10,6 +10,8 @@
 
 #import "TDSchemaCategory.h"
 #import "TDSchemaDefinition.h"
+#import "TDEffectStyleProduction.h"
+#import "TDNamedEffectProduction.h"
 #import "TDDistillRunner.h"
 #import "TDColor.h"
 
@@ -65,10 +67,12 @@
 - (id)namedArtworkProductions;
 - (id)schemaPartDefinitionWithElementID:(long long)arg1 partID:(long long)arg2;
 - (id)schemaDefinitionWithElementID:(long long)arg1;
+
 - (BOOL)customizeSchemaPartDefinition:(id)arg1 usingArtworkFormat:(id)arg2 nameElement:(id)arg3 shouldReplaceExisting:(BOOL)arg4 error:(id *)arg5;
 - (BOOL)customizeSchemaMaterialDefinition:(id)arg1 shouldReplaceExisting:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)customizeSchemaEffectDefinition:(id)arg1 shouldReplaceExisting:(BOOL)arg2 error:(id *)arg3;
 - (BOOL)customizeSchemaElementDefinition:(id)arg1 usingArtworkFormat:(id)arg2 shouldReplaceExisting:(BOOL)arg3 error:(id *)arg4;
+
 - (void)removeCustomizationForSchemaDefinition:(id)arg1 shouldDeleteAssetFiles:(BOOL)arg2;
 - (BOOL)customizationExistsForSchemaDefinition:(id)arg1;
 - (id)customizedSchemaMaterialDefinitions;
@@ -122,10 +126,13 @@
 - (id)elementProductionsWithName:(id)arg1;
 - (id)namedElementsForElementDefinition:(id)arg1;
 - (id)namedElementWithName:(id)arg1;
-- (id)createNamedEffectProductionWithName:(id)arg1 isText:(BOOL)arg2;
+
+- (TDNamedEffectProduction *)createNamedEffectProductionWithName:(NSString *)name isText:(BOOL)flag;
+
 - (id)namedEffectProductionWithName:(id)arg1;
 - (id)createEffectStyleProductionForPartDefinition:(id)arg1 withNameIdentifier:(id)arg2;
-- (id)createEffectStyleProductionForPartDefinition:(id)arg1;
+- (TDEffectStyleProduction *)createEffectStyleProductionForPartDefinition:(TDSchemaPartDefinition *)part;
+
 - (id)createProductionWithRenditionGroup:(id)arg1 forPartDefinition:(id)arg2 artworkFormat:(id)arg3 nameElement:(id)arg4 shouldReplaceExisting:(BOOL)arg5 error:(id *)arg6;
 - (id)createProductionWithRenditionGroup:(id)arg1 forPartDefinition:(id)arg2 artworkFormat:(id)arg3 shouldReplaceExisting:(BOOL)arg4 error:(id *)arg5;
 - (BOOL)allowMultipleInstancesOfElementID:(long long)arg1;

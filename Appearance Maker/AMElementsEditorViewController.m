@@ -11,6 +11,8 @@
 #import "AMThemeDocument.h"
 #import "AMPartTableCellView.h"
 
+#import "AMEffectEditorWindowController.h"
+
 @interface AMElementsEditorViewController () <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSVisualEffectView *topBarView;
@@ -28,6 +30,8 @@
 @property (nonatomic, strong) TDSchemaDefinition *selectedDefinition;
 
 @property (weak) IBOutlet NSButton *customizeButton;
+
+@property (strong) AMEffectEditorWindowController *effectEditorWindowController;
 
 @end
 
@@ -122,6 +126,27 @@
 #pragma mark Appearance Customization
 
 - (IBAction)customizeSelectedDefinition:(id)sender
+{
+    if ([self.selectedDefinition isKindOfClass:[TDSchemaEffectDefinition class]]) {
+        [self customizeEffectDefinition:(TDSchemaEffectDefinition *)self.selectedDefinition];
+    } else {
+        [self customizeElementDefinition:self.selectedDefinition];
+    }
+}
+
+- (void)customizeEffectDefinition:(TDSchemaEffectDefinition *)definition
+{
+    if (!self.effectEditorWindowController) {
+        self.effectEditorWindowController = [AMEffectEditorWindowController effectEditorWindowControllerWithEffectDefinition:definition document:self.document];
+    } else {
+        self.effectEditorWindowController.document = self.document;
+        self.effectEditorWindowController.effectDefinition = definition;
+    }
+    
+    [self.effectEditorWindowController showWindow:self];
+}
+
+- (void)customizeElementDefinition:(TDSchemaDefinition *)definition
 {
     NSError *error;
     if ([self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {

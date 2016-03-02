@@ -13,7 +13,11 @@
 + (CUISystemStore *)defaultStore;
 
 + (NSColor *)colorWithColorDef:(colordef_t)colorDef;
+
 + (NSColor *)colorWithPhysicalColor:(NSNumber *)physicalColor;
 + (NSNumber *)physicalColorWithColor:(NSColor *)color;
+
++ (NSColor *)effectColorWithPhysicalColor:(NSNumber *)physicalColor;
++ (NSNumber *)effectPhysicalColorWithColor:(NSColor *)color;
 
 @end

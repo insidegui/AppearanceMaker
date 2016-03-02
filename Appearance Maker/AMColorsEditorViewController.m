@@ -63,7 +63,9 @@
     [self.colorsPopUp removeAllItems];
     
     for (TDColorName *name in self.colorNames) {
-        [self.colorsPopUp addItemWithTitle:name.displayName];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:name.displayName action:nil keyEquivalent:@""];
+        item.representedObject = name;
+        [self.colorsPopUp.menu addItem:item];
     }
     
     [self colorsPopUpAction:self.colorsPopUp];
@@ -71,7 +73,7 @@
 
 - (IBAction)colorsPopUpAction:(id)sender
 {
-    self.selectedColorName = self.colorNames[self.colorsPopUp.indexOfSelectedItem];
+    self.selectedColorName = self.colorsPopUp.selectedItem.representedObject;
 }
 
 - (void)setSelectedColorName:(TDColorName *)selectedColorName
@@ -90,12 +92,9 @@
         self.currentColorDefinition.name = self.selectedColorName;
         self.currentColorDefinition.look = self.document.defaultLook;
         self.currentColorDefinition.dateOfLastChange = [NSDate date];
-
-        NSLog(@"%@", [self.document allObjectsForEntity:@"ColorStatus" withSortDescriptors:self.document.defaultSortDescriptors]);
+        
         self.currentColorDefinition.colorStatus = [self.document constantWithName:@"ColorStatus" forIdentifier:1];
     }
-    
-    NSLog(@"%@", self.currentColorDefinition.colorStatus);
     
     [self updateColorWell];
 }
@@ -110,8 +109,6 @@
             self.colorWell.color = [AMSystemThemeStore colorWithColorDef:colorDef];
         }
     }
-    
-    [self colorWellAction:self.colorWell];
 }
 
 - (IBAction)colorWellAction:(id)sender

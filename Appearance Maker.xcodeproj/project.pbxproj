@@ -28,6 +28,9 @@
 		51E9DAEC1B293B730031E002 /* AppearancePreview.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 51E9DAE41B293B540031E002 /* AppearancePreview.bundle */; };
 		51E9DAF71B2947F20031E002 /* AMEditorAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */; };
 		51E9DAF91B2948FA0031E002 /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = 51E9DAF81B2948FA0031E002 /* AMEditorAppearance.car */; };
+		DDFC04F11C87336D00162CCE /* AMEffectEditorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFC04EF1C87336D00162CCE /* AMEffectEditorWindowController.m */; };
+		DDFC04F21C87336D00162CCE /* AMEffectEditorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFC04F01C87336D00162CCE /* AMEffectEditorWindowController.xib */; };
+		DDFC04F61C87662400162CCE /* AMFlippedClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFC04F51C87662400162CCE /* AMFlippedClipView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,20 @@
 		DDFC04DF1C872CAB00162CCE /* TDThemeConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDThemeConstant.h; sourceTree = "<group>"; };
 		DDFC04E11C872CB300162CCE /* CUICatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUICatalog.h; sourceTree = "<group>"; };
 		DDFC04E21C872CB300162CCE /* CUIStructuredThemeStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUIStructuredThemeStore.h; sourceTree = "<group>"; };
+		DDFC04E41C872D2C00162CCE /* TDEffectComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDEffectComponent.h; sourceTree = "<group>"; };
+		DDFC04E51C872D2C00162CCE /* TDEffectParameterType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDEffectParameterType.h; sourceTree = "<group>"; };
+		DDFC04E61C872D2C00162CCE /* TDEffectParameterValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDEffectParameterValue.h; sourceTree = "<group>"; };
+		DDFC04E71C872D2C00162CCE /* TDEffectRenditionSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDEffectRenditionSpec.h; sourceTree = "<group>"; };
+		DDFC04E81C872D2C00162CCE /* TDEffectStyleProduction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDEffectStyleProduction.h; sourceTree = "<group>"; };
+		DDFC04E91C872D2C00162CCE /* TDEffectType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDEffectType.h; sourceTree = "<group>"; };
+		DDFC04EA1C872D2C00162CCE /* TDNamedEffectProduction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDNamedEffectProduction.h; sourceTree = "<group>"; };
+		DDFC04EC1C872D8800162CCE /* TDElementProduction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDElementProduction.h; sourceTree = "<group>"; };
+		DDFC04ED1C87321C00162CCE /* TDRenditionSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDRenditionSpec.h; sourceTree = "<group>"; };
+		DDFC04EE1C87336D00162CCE /* AMEffectEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEffectEditorWindowController.h; sourceTree = "<group>"; };
+		DDFC04EF1C87336D00162CCE /* AMEffectEditorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEffectEditorWindowController.m; sourceTree = "<group>"; };
+		DDFC04F01C87336D00162CCE /* AMEffectEditorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMEffectEditorWindowController.xib; sourceTree = "<group>"; };
+		DDFC04F41C87662400162CCE /* AMFlippedClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFlippedClipView.h; sourceTree = "<group>"; };
+		DDFC04F51C87662400162CCE /* AMFlippedClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFlippedClipView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +175,7 @@
 		51A2C2C51B291CA5002B5971 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DDFC04F31C87337100162CCE /* Effect Editor */,
 				51A2C2B21B291C5D002B5971 /* AMEditorViewController.h */,
 				51A2C2B31B291C5D002B5971 /* AMEditorViewController.m */,
 				51A2C2B51B291C5D002B5971 /* AMThemeDocument.h */,
@@ -181,6 +199,7 @@
 			children = (
 				51A2C2B81B291C5D002B5971 /* Assets.xcassets */,
 				51A2C2BA1B291C5D002B5971 /* Main.storyboard */,
+				DDFC04F01C87336D00162CCE /* AMEffectEditorWindowController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -196,6 +215,8 @@
 				51E9DAD51B292E050031E002 /* AMDocumentWindow.m */,
 				51E9DADD1B29393A0031E002 /* AMBackgroundView.h */,
 				51E9DADE1B29393A0031E002 /* AMBackgroundView.m */,
+				DDFC04F41C87662400162CCE /* AMFlippedClipView.h */,
+				DDFC04F51C87662400162CCE /* AMFlippedClipView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -222,12 +243,15 @@
 		DDFC04D91C872CAB00162CCE /* CoreThemeDefinition Headers */ = {
 			isa = PBXGroup;
 			children = (
+				DDFC04E31C872D2C00162CCE /* Effect */,
 				DDFC04DA1C872CAB00162CCE /* CoreThemeDocument.h */,
 				DDFC04DB1C872CAB00162CCE /* TDColor.h */,
 				DDFC04DC1C872CAB00162CCE /* TDDistillRunner.h */,
 				DDFC04DD1C872CAB00162CCE /* TDSchemaCategory.h */,
 				DDFC04DE1C872CAB00162CCE /* TDSchemaDefinition.h */,
 				DDFC04DF1C872CAB00162CCE /* TDThemeConstant.h */,
+				DDFC04EC1C872D8800162CCE /* TDElementProduction.h */,
+				DDFC04ED1C87321C00162CCE /* TDRenditionSpec.h */,
 			);
 			path = "CoreThemeDefinition Headers";
 			sourceTree = "<group>";
@@ -239,6 +263,29 @@
 				DDFC04E21C872CB300162CCE /* CUIStructuredThemeStore.h */,
 			);
 			path = "CoreUI Headers";
+			sourceTree = "<group>";
+		};
+		DDFC04E31C872D2C00162CCE /* Effect */ = {
+			isa = PBXGroup;
+			children = (
+				DDFC04E81C872D2C00162CCE /* TDEffectStyleProduction.h */,
+				DDFC04EA1C872D2C00162CCE /* TDNamedEffectProduction.h */,
+				DDFC04E41C872D2C00162CCE /* TDEffectComponent.h */,
+				DDFC04E51C872D2C00162CCE /* TDEffectParameterType.h */,
+				DDFC04E61C872D2C00162CCE /* TDEffectParameterValue.h */,
+				DDFC04E71C872D2C00162CCE /* TDEffectRenditionSpec.h */,
+				DDFC04E91C872D2C00162CCE /* TDEffectType.h */,
+			);
+			path = Effect;
+			sourceTree = "<group>";
+		};
+		DDFC04F31C87337100162CCE /* Effect Editor */ = {
+			isa = PBXGroup;
+			children = (
+				DDFC04EE1C87336D00162CCE /* AMEffectEditorWindowController.h */,
+				DDFC04EF1C87336D00162CCE /* AMEffectEditorWindowController.m */,
+			);
+			name = "Effect Editor";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51A2C2B91B291C5D002B5971 /* Assets.xcassets in Resources */,
+				DDFC04F21C87336D00162CCE /* AMEffectEditorWindowController.xib in Resources */,
 				51A2C2BC1B291C5D002B5971 /* Main.storyboard in Resources */,
 				51E9DAEC1B293B730031E002 /* AppearancePreview.bundle in Resources */,
 				51E9DAF91B2948FA0031E002 /* AMEditorAppearance.car in Resources */,
@@ -343,6 +391,7 @@
 			files = (
 				51E9DAD61B292E050031E002 /* AMDocumentWindow.m in Sources */,
 				51E9DAD91B29364B0031E002 /* AMColorsEditorViewController.m in Sources */,
+				DDFC04F11C87336D00162CCE /* AMEffectEditorWindowController.m in Sources */,
 				51A2C2DA1B292A42002B5971 /* AMPartTableCellView.m in Sources */,
 				51E9DADC1B2936700031E002 /* AMPreviewViewController.m in Sources */,
 				51A2C2B71B291C5D002B5971 /* AMThemeDocument.m in Sources */,
@@ -351,6 +400,7 @@
 				51A2C2CF1B291E4A002B5971 /* AMFontsEditorViewController.m in Sources */,
 				51A2C2CB1B291E23002B5971 /* AMElementsEditorViewController.m in Sources */,
 				51A2C2B11B291C5D002B5971 /* main.m in Sources */,
+				DDFC04F61C87662400162CCE /* AMFlippedClipView.m in Sources */,
 				51E9DAF71B2947F20031E002 /* AMEditorAppearance.m in Sources */,
 				51E9DADF1B29393A0031E002 /* AMBackgroundView.m in Sources */,
 				51A2C2AE1B291C5D002B5971 /* AppDelegate.m in Sources */,

@@ -34,44 +34,94 @@
     return [self colorWithPhysicalColor:@(colorDef.color)];
 }
 
++ (NSColor *)effectColorWithPhysicalColor:(NSNumber *)physicalColor
+{
+    unsigned long color = (long)physicalColor.integerValue;
+    
+    unsigned char blue = color >> 16;
+    unsigned char green = color >> 8;
+    unsigned char red = color;
+    
+    CGFloat redFloat = red / 255.0;
+    CGFloat greenFloat = green / 255.0;
+    CGFloat blueFloat = blue / 255.0;
+    
+    return [NSColor colorWithCalibratedRed:redFloat green:greenFloat blue:blueFloat alpha:1.0];
+}
+
 + (NSColor *)colorWithPhysicalColor:(NSNumber *)physicalColor
 {
-    unsigned int color = physicalColor.intValue;
+    unsigned long color = (long)physicalColor.integerValue;
     
-    unsigned int red = ((color & 0x00ff0000U) >> 16);
-    unsigned int green = ((color & 0x0000ff00U) >> 8);
-    unsigned int blue = (color & 0x000000ffU);
-    unsigned int alpha = ((color & 0xff000000U) >> 24);
+    unsigned char blue = color;
+    unsigned char green = color >> 8;
+    unsigned char red = color >> 16;
+    unsigned char alpha = color >> 24;
     
-    return [NSColor colorWithCalibratedRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:alpha/255.0];
+    CGFloat redFloat = red / 255.0;
+    CGFloat greenFloat = green / 255.0;
+    CGFloat blueFloat = blue / 255.0;
+    CGFloat alphaFloat = alpha / 255.0;
+    
+    return [NSColor colorWithCalibratedRed:redFloat green:greenFloat blue:blueFloat alpha:alphaFloat];
+}
+
++ (NSNumber *)effectPhysicalColorWithColor:(NSColor *)color
+{
+    unsigned char red = 0;
+    unsigned char green = 0;
+    unsigned char blue = 0;
+    unsigned char alpha = color.alphaComponent*255;
+    
+    switch (color.numberOfComponents) {
+        case 2:
+            red = color.whiteComponent*255;
+            green = color.whiteComponent*255;
+            blue = color.whiteComponent*255;
+            break;
+        case 4:
+            red = color.redComponent*255;
+            green = color.greenComponent*255;
+            blue = color.blueComponent*255;
+            break;
+    }
+    
+    NSString *hexString = [NSString stringWithFormat:@"%02X%02X%02X%02X", red, green, blue, alpha];
+    NSScanner *scanner = [[NSScanner alloc] initWithString:hexString];
+    
+    unsigned int number = 0;
+    [scanner scanHexInt:&number];
+    
+    return @(number);
 }
 
 + (NSNumber *)physicalColorWithColor:(NSColor *)color
 {
-    unsigned int red = 0;
-    unsigned int green = 0;
-    unsigned int blue = 0;
-    unsigned int alpha = color.alphaComponent*255U;
+    unsigned char red = 0;
+    unsigned char green = 0;
+    unsigned char blue = 0;
+    unsigned char alpha = color.alphaComponent*255;
     
     switch (color.numberOfComponents) {
         case 2:
-            red = color.whiteComponent*255U;
-            green = color.whiteComponent*255U;
-            blue = color.whiteComponent*255U;
+            red = color.whiteComponent*255;
+            green = color.whiteComponent*255;
+            blue = color.whiteComponent*255;
             break;
         case 4:
-            red = color.redComponent*255U;
-            green = color.greenComponent*255U;
-            blue = color.blueComponent*255U;
+            red = color.redComponent*255;
+            green = color.greenComponent*255;
+            blue = color.blueComponent*255;
             break;
     }
 
-    unsigned int tmp1 = green << 0x8 & 0xffff;
-    tmp1 = tmp1 | (red << 0x10 & 0xff0000);
-    unsigned int tmp2 = (blue & 0xff) | tmp1;
-    unsigned int output = (tmp2 | alpha << 0x18);
+    NSString *hexString = [NSString stringWithFormat:@"%02X%02X%02X%02X", blue, green, red, alpha];
+    NSScanner *scanner = [[NSScanner alloc] initWithString:hexString];
     
-    return @(output);
+    unsigned long long number = 0;
+    [scanner scanHexLongLong:&number];
+    
+    return @(number);
 }
 
 @end
