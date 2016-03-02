@@ -43,11 +43,8 @@
 /* Begin PBXFileReference section */
 		512874561B29CE91000B69A3 /* AMDocumentBasedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDocumentBasedViewController.h; sourceTree = "<group>"; };
 		512874571B29CE91000B69A3 /* AMDocumentBasedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDocumentBasedViewController.m; sourceTree = "<group>"; };
-		512874591B29D076000B69A3 /* TDColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDColor.h; sourceTree = "<group>"; };
 		5128745C1B29E091000B69A3 /* CoreThemeDefinition.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreThemeDefinition.framework; path = ../../../../../../../System/Library/PrivateFrameworks/CoreThemeDefinition.framework; sourceTree = "<group>"; };
 		518B94481B2F8C5D004008A6 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = ../../../../../../../System/Library/PrivateFrameworks/CoreUI.framework; sourceTree = "<group>"; };
-		518B944A1B2F8C76004008A6 /* CUIStructuredThemeStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUIStructuredThemeStore.h; sourceTree = "<group>"; };
-		518B944B1B2F8EF9004008A6 /* CUICatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUICatalog.h; sourceTree = "<group>"; };
 		518B944C1B2F92C3004008A6 /* AMSystemThemeStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSystemThemeStore.h; sourceTree = "<group>"; };
 		518B944D1B2F92C3004008A6 /* AMSystemThemeStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSystemThemeStore.m; sourceTree = "<group>"; };
 		51A2C2A91B291C5D002B5971 /* Appearance Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appearance Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,14 +58,10 @@
 		51A2C2B81B291C5D002B5971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51A2C2BB1B291C5D002B5971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51A2C2BD1B291C5D002B5971 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		51A2C2C41B291CA2002B5971 /* CoreThemeDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreThemeDocument.h; sourceTree = "<group>"; };
 		51A2C2C91B291E23002B5971 /* AMElementsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMElementsEditorViewController.h; sourceTree = "<group>"; };
 		51A2C2CA1B291E23002B5971 /* AMElementsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMElementsEditorViewController.m; sourceTree = "<group>"; };
 		51A2C2CC1B291E4A002B5971 /* AMFontsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFontsEditorViewController.h; sourceTree = "<group>"; };
 		51A2C2CD1B291E4A002B5971 /* AMFontsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFontsEditorViewController.m; sourceTree = "<group>"; };
-		51A2C2D11B2920EA002B5971 /* TDSchemaCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDSchemaCategory.h; sourceTree = "<group>"; };
-		51A2C2D21B292104002B5971 /* TDThemeConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDThemeConstant.h; sourceTree = "<group>"; };
-		51A2C2D31B2923A7002B5971 /* TDSchemaDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDSchemaDefinition.h; sourceTree = "<group>"; };
 		51A2C2D51B2927EF002B5971 /* AMSeparatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSeparatorView.h; sourceTree = "<group>"; };
 		51A2C2D61B2927EF002B5971 /* AMSeparatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSeparatorView.m; sourceTree = "<group>"; };
 		51A2C2D81B292A42002B5971 /* AMPartTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPartTableCellView.h; sourceTree = "<group>"; };
@@ -83,10 +76,17 @@
 		51E9DADE1B29393A0031E002 /* AMBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBackgroundView.m; sourceTree = "<group>"; };
 		51E9DAE41B293B540031E002 /* AppearancePreview.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppearancePreview.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		51E9DAE61B293B540031E002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		51E9DAED1B293BA30031E002 /* TDDistillRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDistillRunner.h; sourceTree = "<group>"; };
 		51E9DAF51B2947F20031E002 /* AMEditorAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEditorAppearance.h; sourceTree = "<group>"; };
 		51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEditorAppearance.m; sourceTree = "<group>"; };
 		51E9DAF81B2948FA0031E002 /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMEditorAppearance.car; sourceTree = "<group>"; };
+		DDFC04DA1C872CAB00162CCE /* CoreThemeDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreThemeDocument.h; sourceTree = "<group>"; };
+		DDFC04DB1C872CAB00162CCE /* TDColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDColor.h; sourceTree = "<group>"; };
+		DDFC04DC1C872CAB00162CCE /* TDDistillRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDistillRunner.h; sourceTree = "<group>"; };
+		DDFC04DD1C872CAB00162CCE /* TDSchemaCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDSchemaCategory.h; sourceTree = "<group>"; };
+		DDFC04DE1C872CAB00162CCE /* TDSchemaDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDSchemaDefinition.h; sourceTree = "<group>"; };
+		DDFC04DF1C872CAB00162CCE /* TDThemeConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDThemeConstant.h; sourceTree = "<group>"; };
+		DDFC04E11C872CB300162CCE /* CUICatalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUICatalog.h; sourceTree = "<group>"; };
+		DDFC04E21C872CB300162CCE /* CUIStructuredThemeStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUIStructuredThemeStore.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +132,12 @@
 		51A2C2AB1B291C5D002B5971 /* Appearance Maker */ = {
 			isa = PBXGroup;
 			children = (
+				DDFC04E01C872CB300162CCE /* CoreUI Headers */,
+				DDFC04D91C872CAB00162CCE /* CoreThemeDefinition Headers */,
 				51E9DAF41B2947E30031E002 /* Helpers */,
 				51A2C2D41B2927DB002B5971 /* Views */,
 				51A2C2C61B291CCB002B5971 /* Resources */,
 				51A2C2C51B291CA5002B5971 /* Controllers */,
-				51A2C2C31B291C95002B5971 /* Headers */,
 				51A2C2AF1B291C5D002B5971 /* Supporting Files */,
 			);
 			path = "Appearance Maker";
@@ -152,21 +153,6 @@
 				51A2C2B01B291C5D002B5971 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		51A2C2C31B291C95002B5971 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				51A2C2C41B291CA2002B5971 /* CoreThemeDocument.h */,
-				51A2C2D11B2920EA002B5971 /* TDSchemaCategory.h */,
-				51A2C2D21B292104002B5971 /* TDThemeConstant.h */,
-				51A2C2D31B2923A7002B5971 /* TDSchemaDefinition.h */,
-				51E9DAED1B293BA30031E002 /* TDDistillRunner.h */,
-				512874591B29D076000B69A3 /* TDColor.h */,
-				518B944A1B2F8C76004008A6 /* CUIStructuredThemeStore.h */,
-				518B944B1B2F8EF9004008A6 /* CUICatalog.h */,
-			);
-			name = Headers;
 			sourceTree = "<group>";
 		};
 		51A2C2C51B291CA5002B5971 /* Controllers */ = {
@@ -231,6 +217,28 @@
 				518B944D1B2F92C3004008A6 /* AMSystemThemeStore.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		DDFC04D91C872CAB00162CCE /* CoreThemeDefinition Headers */ = {
+			isa = PBXGroup;
+			children = (
+				DDFC04DA1C872CAB00162CCE /* CoreThemeDocument.h */,
+				DDFC04DB1C872CAB00162CCE /* TDColor.h */,
+				DDFC04DC1C872CAB00162CCE /* TDDistillRunner.h */,
+				DDFC04DD1C872CAB00162CCE /* TDSchemaCategory.h */,
+				DDFC04DE1C872CAB00162CCE /* TDSchemaDefinition.h */,
+				DDFC04DF1C872CAB00162CCE /* TDThemeConstant.h */,
+			);
+			path = "CoreThemeDefinition Headers";
+			sourceTree = "<group>";
+		};
+		DDFC04E01C872CB300162CCE /* CoreUI Headers */ = {
+			isa = PBXGroup;
+			children = (
+				DDFC04E11C872CB300162CCE /* CUICatalog.h */,
+				DDFC04E21C872CB300162CCE /* CUIStructuredThemeStore.h */,
+			);
+			path = "CoreUI Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
