@@ -13,7 +13,7 @@
 
 #import "AMEffectEditorWindowController.h"
 
-@interface AMElementsEditorViewController () <NSTableViewDataSource, NSTableViewDelegate>
+@interface AMElementsEditorViewController () <NSTableViewDataSource, NSTableViewDelegate, TDAssetManagementDelegate>
 
 @property (weak) IBOutlet NSVisualEffectView *topBarView;
 @property (weak) IBOutlet NSVisualEffectView *bottomBarView;
@@ -48,6 +48,13 @@
     self.tableView.delegate = self;
 }
 
+- (void)viewDidAppear
+{
+    [super viewDidAppear];
+    
+    self.document.assetManagementDelegate = self;
+}
+
 - (void)setRepresentedObject:(id __nullable)representedObject
 {
     [super setRepresentedObject:representedObject];
@@ -63,7 +70,13 @@
     
     self.categories = [self.document allObjectsForEntity:@"SchemaCategory" withSortDescriptors:self.document.defaultSortDescriptors];
     for (TDSchemaCategory *category in self.categories) {
-        [self.categoriesPopUp addItemWithTitle:category.displayName];
+        // materials and effects are handled in other view controllers
+        if ([category.displayName isEqualToString:@"Materials"] ||
+            [category.displayName isEqualToString:@"Effects"]) continue;
+        
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:category.displayName action:nil keyEquivalent:@""];
+        item.representedObject = category;
+        [self.categoriesPopUp.menu addItem:item];
     }
     
     [self categoriesPopUpAction:self.categoriesPopUp];
@@ -71,7 +84,7 @@
 
 - (IBAction)categoriesPopUpAction:(id)sender
 {
-    self.selectedCategory = self.categories[self.categoriesPopUp.indexOfSelectedItem];
+    self.selectedCategory = self.categoriesPopUp.selectedItem.representedObject;
 }
 
 - (IBAction)elementsPopUpAction:(id)sender
@@ -149,11 +162,23 @@
 - (void)customizeElementDefinition:(TDSchemaDefinition *)definition
 {
     NSError *error;
-    if ([self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {
-        [[NSWorkspace sharedWorkspace] selectFile:self.document.themeBitSourceURL.path inFileViewerRootedAtPath:self.document.themeBitSourceURL.path.stringByDeletingLastPathComponent];
-    } else {
+    if (![self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {
         [[NSAlert alertWithError:error] beginSheetModalForWindow:self.document.windowForSheet completionHandler:nil];
     }
+}
+
+- (void)didCreateAsset:(__kindof TDAsset *)asset atURL:(NSURL *)URL
+{
+    static BOOL coalescing = NO;
+    if (coalescing) return;
+    
+    coalescing = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        coalescing = NO;
+    });
+    
+    [[NSWorkspace sharedWorkspace] selectFile:URL.path inFileViewerRootedAtPath:URL.path.stringByDeletingLastPathComponent];
 }
 
 #pragma mark Parts Table View

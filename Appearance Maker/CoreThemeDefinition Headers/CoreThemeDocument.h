@@ -14,6 +14,19 @@
 #import "TDNamedEffectProduction.h"
 #import "TDDistillRunner.h"
 #import "TDColor.h"
+#import "TDAsset.h"
+
+@protocol TDAssetManagementDelegate <NSObject>
+
+@optional
+
+- (void)willDeleteAsset:(__kindof TDAsset *)asset atURL:(NSURL *)URL;
+- (void)didDeleteAssetAtURL:(NSURL *)URL;
+
+- (void)willCreateAssetAtURL:(NSURL *)URL;
+- (void)didCreateAsset:(__kindof TDAsset *)asset atURL:(NSURL *)URL;
+
+@end
 
 @interface CoreThemeDocument : NSPersistentDocument
 
@@ -36,7 +49,7 @@
 + (void)initialize;
 
 //@property(nonatomic) id <TDCustomAssetProvider> customAssetProvider; // @synthesize customAssetProvider=_customAssetProvider;
-//@property(nonatomic) id <TDAssetManagementDelegate> assetManagementDelegate; // @synthesize assetManagementDelegate=_assetManagementDelegate;
+@property(nonatomic) id <TDAssetManagementDelegate> assetManagementDelegate; // @synthesize assetManagementDelegate=_assetManagementDelegate;
 @property(copy) NSString *pathToRepresentedDocument; // @synthesize pathToRepresentedDocument;
 @property(copy, nonatomic) NSString *minimumDeploymentVersion; // @synthesize minimumDeploymentVersion=_minimumDeploymentVersion;
 //@property(retain, nonatomic) TDDeviceTraits *optimizeForDeviceTraits; // @synthesize optimizeForDeviceTraits=_optimizeForDeviceTraits;
@@ -147,10 +160,12 @@
 - (void)deleteProduction:(id)arg1 shouldDeleteAssetFiles:(BOOL)arg2;
 - (void)deleteObject:(id)arg1;
 - (void)deleteObjects:(id)arg1;
-- (id)newObjectForEntity:(id)arg1;
-- (unsigned long long)countForEntity:(id)arg1 withPredicate:(id)arg2;
-- (id)objectsForEntity:(id)arg1 withPredicate:(id)arg2 sortDescriptors:(id)arg3 error:(id *)arg4;
-- (id)objectsForEntity:(id)arg1 withPredicate:(id)arg2 sortDescriptors:(id)arg3;
+
+- (__kindof NSManagedObject *)newObjectForEntity:(NSString *)entityName;
+- (NSUInteger)countForEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
+- (NSArray <__kindof NSManagedObject *> *)objectsForEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray <NSSortDescriptor *> *)sortDescriptors error:(NSError **)outError;
+- (NSArray <__kindof NSManagedObject *> *)objectsForEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray <NSSortDescriptor *> *)sortDescriptors;
+
 - (id)allObjectsForEntity:(id)arg1 withSortDescriptors:(id)arg2 error:(id *)arg3;
 - (id)allObjectsForEntity:(id)arg1 withSortDescriptors:(id)arg2;
 - (id)mappingForPhotoshopLayerIndex:(long long)arg1 themeDrawingLayerIdentifier:(long long)arg2;

@@ -64,6 +64,7 @@
         if (!result) return;
         
         TDDistillRunner *distiller = [[TDDistillRunner alloc] init];
+        distiller.logger = [TDLogger logger];
         if (![distiller runDistillWithDocumentURL:self.fileURL outputURL:exportPanel.URL attemptIncremental:YES forceDistill:NO]) {
             NSLog(@"Distiller failed");
         }

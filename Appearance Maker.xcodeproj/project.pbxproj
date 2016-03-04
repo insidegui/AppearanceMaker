@@ -28,6 +28,7 @@
 		51E9DAEC1B293B730031E002 /* AppearancePreview.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 51E9DAE41B293B540031E002 /* AppearancePreview.bundle */; };
 		51E9DAF71B2947F20031E002 /* AMEditorAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */; };
 		51E9DAF91B2948FA0031E002 /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = 51E9DAF81B2948FA0031E002 /* AMEditorAppearance.car */; };
+		DD3B2E831C88E6120000D811 /* AMMaterialsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3B2E821C88E6120000D811 /* AMMaterialsEditorViewController.m */; };
 		DDFC04F11C87336D00162CCE /* AMEffectEditorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFC04EF1C87336D00162CCE /* AMEffectEditorWindowController.m */; };
 		DDFC04F21C87336D00162CCE /* AMEffectEditorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFC04F01C87336D00162CCE /* AMEffectEditorWindowController.xib */; };
 		DDFC04F61C87662400162CCE /* AMFlippedClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFC04F51C87662400162CCE /* AMFlippedClipView.m */; };
@@ -82,6 +83,12 @@
 		51E9DAF51B2947F20031E002 /* AMEditorAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEditorAppearance.h; sourceTree = "<group>"; };
 		51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEditorAppearance.m; sourceTree = "<group>"; };
 		51E9DAF81B2948FA0031E002 /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMEditorAppearance.car; sourceTree = "<group>"; };
+		DD3B2E811C88E6120000D811 /* AMMaterialsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMaterialsEditorViewController.h; sourceTree = "<group>"; };
+		DD3B2E821C88E6120000D811 /* AMMaterialsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMaterialsEditorViewController.m; sourceTree = "<group>"; };
+		DD3B2F021C8935C40000D811 /* TDAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDAsset.h; sourceTree = "<group>"; };
+		DD3B2F031C8935C40000D811 /* TDMicaAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDMicaAsset.h; sourceTree = "<group>"; };
+		DD3B2F041C8935C40000D811 /* TDPhotoshopAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPhotoshopAsset.h; sourceTree = "<group>"; };
+		DD3B2F051C8935C40000D811 /* TDPNGAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDPNGAsset.h; sourceTree = "<group>"; };
 		DDFC04DA1C872CAB00162CCE /* CoreThemeDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreThemeDocument.h; sourceTree = "<group>"; };
 		DDFC04DB1C872CAB00162CCE /* TDColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDColor.h; sourceTree = "<group>"; };
 		DDFC04DC1C872CAB00162CCE /* TDDistillRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDistillRunner.h; sourceTree = "<group>"; };
@@ -182,6 +189,8 @@
 				51A2C2B61B291C5D002B5971 /* AMThemeDocument.m */,
 				51A2C2C91B291E23002B5971 /* AMElementsEditorViewController.h */,
 				51A2C2CA1B291E23002B5971 /* AMElementsEditorViewController.m */,
+				DD3B2E811C88E6120000D811 /* AMMaterialsEditorViewController.h */,
+				DD3B2E821C88E6120000D811 /* AMMaterialsEditorViewController.m */,
 				51A2C2CC1B291E4A002B5971 /* AMFontsEditorViewController.h */,
 				51A2C2CD1B291E4A002B5971 /* AMFontsEditorViewController.m */,
 				51E9DAD71B29364B0031E002 /* AMColorsEditorViewController.h */,
@@ -240,9 +249,21 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		DD3B2F011C8935C40000D811 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DD3B2F021C8935C40000D811 /* TDAsset.h */,
+				DD3B2F031C8935C40000D811 /* TDMicaAsset.h */,
+				DD3B2F041C8935C40000D811 /* TDPhotoshopAsset.h */,
+				DD3B2F051C8935C40000D811 /* TDPNGAsset.h */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		DDFC04D91C872CAB00162CCE /* CoreThemeDefinition Headers */ = {
 			isa = PBXGroup;
 			children = (
+				DD3B2F011C8935C40000D811 /* Assets */,
 				DDFC04E31C872D2C00162CCE /* Effect */,
 				DDFC04DA1C872CAB00162CCE /* CoreThemeDocument.h */,
 				DDFC04DB1C872CAB00162CCE /* TDColor.h */,
@@ -389,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3B2E831C88E6120000D811 /* AMMaterialsEditorViewController.m in Sources */,
 				51E9DAD61B292E050031E002 /* AMDocumentWindow.m in Sources */,
 				51E9DAD91B29364B0031E002 /* AMColorsEditorViewController.m in Sources */,
 				DDFC04F11C87336D00162CCE /* AMEffectEditorWindowController.m in Sources */,
