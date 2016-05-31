@@ -108,16 +108,27 @@
     [self reflectDefinitionSelectionChange];
 }
 
+- (NSString *)titleForDefinition:(TDSchemaDefinition *)definition
+{
+    NSString *title = definition.displayName;
+    if (!definition.published) title = [title stringByAppendingString:@" (Unpublished)"];
+    if ([self.document customizationExistsForSchemaDefinition:definition]) title = [title stringByAppendingString:@" (Customized)"];
+    
+    return title;
+}
+
 - (void)reflectCategorySelectionChange
 {
+    TDSchemaDefinition *previouslySelectedDefinition = self.elementsPopUp.selectedItem.representedObject;
+    
     [self.elementsPopUp removeAllItems];
     
     self.sortedDefinitions = [self.selectedCategory.elements sortedArrayUsingDescriptors:self.document.defaultSortDescriptors];
     for (TDSchemaDefinition *definition in self.sortedDefinitions) {
-        NSString *title = definition.displayName;
-        if (!definition.published) title = [title stringByAppendingString:@" (Unpublished)"];
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[self titleForDefinition:definition] action:nil keyEquivalent:@""];
+        item.representedObject = definition;
         
-        [self.elementsPopUp addItemWithTitle:title];
+        [self.elementsPopUp.menu addItem:item];
     }
     
     if (!self.elementsPopUp.itemArray.count) {
@@ -125,6 +136,8 @@
         self.elementsPopUp.enabled = NO;
     } else {
         self.elementsPopUp.enabled = YES;
+        
+        if (previouslySelectedDefinition) [self.elementsPopUp selectItemWithTitle:[self titleForDefinition:previouslySelectedDefinition]];
         
         [self elementsPopUpAction:self.elementsPopUp];
     }
@@ -165,6 +178,8 @@
     if (![self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {
         [[NSAlert alertWithError:error] beginSheetModalForWindow:self.document.windowForSheet completionHandler:nil];
     }
+    
+    [self reflectCategorySelectionChange];
 }
 
 - (void)didCreateAsset:(__kindof TDAsset *)asset atURL:(NSURL *)URL
