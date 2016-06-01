@@ -12,13 +12,12 @@
 #import "AMPartTableCellView.h"
 
 #import "AMEffectEditorWindowController.h"
+#import "PSDPreview.h"
 
 @interface AMElementsEditorViewController () <NSTableViewDataSource, NSTableViewDelegate, TDAssetManagementDelegate>
 
 @property (weak) IBOutlet NSVisualEffectView *topBarView;
 @property (weak) IBOutlet NSVisualEffectView *bottomBarView;
-@property (weak) IBOutlet NSTableView *tableView;
-@property (weak) IBOutlet NSScrollView *scrollView;
 
 @property (weak) IBOutlet NSPopUpButton *categoriesPopUp;
 @property (weak) IBOutlet NSPopUpButton *elementsPopUp;
@@ -28,10 +27,19 @@
 
 @property (nonatomic, strong) TDSchemaCategory *selectedCategory;
 @property (nonatomic, strong) TDSchemaDefinition *selectedDefinition;
+@property (nonatomic, strong) TDSchemaPartDefinition *selectedPart;
 
 @property (weak) IBOutlet NSButton *customizeButton;
 
 @property (strong) AMEffectEditorWindowController *effectEditorWindowController;
+
+@property (weak) IBOutlet NSTextField *selectedElementLabel;
+@property (weak) IBOutlet NSStackView *previewPartControlsContainerView;
+@property (weak) IBOutlet NSPopUpButton *partsPopUp;
+@property (weak) IBOutlet NSStackView *previewContainerView;
+@property (weak) IBOutlet NSImageView *systemAppearanceImageView;
+@property (weak) IBOutlet NSImageView *customizedAppearanceImageView;
+@property (weak) IBOutlet NSStackView *customizedAppearanceContainerView;
 
 @end
 
@@ -41,11 +49,17 @@
 {
     [super viewDidLoad];
     
-    self.scrollView.automaticallyAdjustsContentInsets = NO;
-    self.scrollView.contentInsets = NSEdgeInsetsMake(NSHeight(self.topBarView.frame), 0, NSHeight(self.bottomBarView.frame), 0);
+    self.selectedElementLabel.stringValue = @"(Select an element above)";
+    self.previewContainerView.hidden = YES;
+    self.previewPartControlsContainerView.hidden = YES;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    self.view.wantsLayer = YES;
+    self.view.layer.backgroundColor = [NSColor whiteColor].CGColor;
 }
 
 - (void)viewDidAppear
@@ -108,6 +122,13 @@
     [self reflectDefinitionSelectionChange];
 }
 
+- (void)setSelectedPart:(TDSchemaPartDefinition *)selectedPart
+{
+    _selectedPart = selectedPart;
+    
+    [self reflectPartSelectionChange];
+}
+
 - (NSString *)titleForDefinition:(TDSchemaDefinition *)definition
 {
     NSString *title = definition.displayName;
@@ -145,8 +166,32 @@
 
 - (void)reflectDefinitionSelectionChange
 {
-    [self.tableView reloadData];
+    if (self.selectedDefinition == nil) {
+        self.selectedElementLabel.stringValue = @"(Select an element above)";
+    } else {
+        self.selectedElementLabel.stringValue = self.selectedDefinition.displayName;
+    }
+    
+    [self.selectedElementLabel sizeToFit];
+    
+    self.previewPartControlsContainerView.hidden = (self.selectedDefinition == nil);
+    self.previewContainerView.hidden = (self.selectedDefinition == nil);
     self.customizeButton.enabled = (self.selectedDefinition != nil);
+    
+    [self populatePartsPopUp];
+}
+
+- (void)populatePartsPopUp
+{
+    [self.partsPopUp removeAllItems];
+    
+    for (TDSchemaPartDefinition *part in self.selectedDefinition.parts) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:part.name action:nil keyEquivalent:@""];
+        item.representedObject = part;
+        [self.partsPopUp.menu addItem:item];
+    }
+    
+    [self partsPopUpAction:self.partsPopUp];
 }
 
 #pragma mark Appearance Customization
@@ -156,7 +201,7 @@
     if ([self.selectedDefinition isKindOfClass:[TDSchemaEffectDefinition class]]) {
         [self customizeEffectDefinition:(TDSchemaEffectDefinition *)self.selectedDefinition];
     } else {
-        [self customizeElementDefinition:self.selectedDefinition];
+        [self customizePartDefinition:self.selectedPart];
     }
 }
 
@@ -172,15 +217,25 @@
     [self.effectEditorWindowController showWindow:self];
 }
 
-- (void)customizeElementDefinition:(TDSchemaDefinition *)definition
+- (void)customizePartDefinition:(TDSchemaPartDefinition *)part
 {
     NSError *error;
-    if (![self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {
+    if (![self.document customizeSchemaPartDefinition:part usingArtworkFormat:@"psd" nameElement:nil shouldReplaceExisting:NO error:&error]) {
         [[NSAlert alertWithError:error] beginSheetModalForWindow:self.document.windowForSheet completionHandler:nil];
     }
     
-    [self reflectCategorySelectionChange];
+    [self reflectPartSelectionChange];
 }
+
+//- (void)customizeElementDefinition:(TDSchemaDefinition *)definition
+//{
+//    NSError *error;
+//    if (![self.document customizeSchemaElementDefinition:self.selectedDefinition usingArtworkFormat:@"psd" shouldReplaceExisting:NO error:&error]) {
+//        [[NSAlert alertWithError:error] beginSheetModalForWindow:self.document.windowForSheet completionHandler:nil];
+//    }
+//    
+//    [self reflectCategorySelectionChange];
+//}
 
 - (void)didCreateAsset:(__kindof TDAsset *)asset atURL:(NSURL *)URL
 {
@@ -194,6 +249,43 @@
     });
     
     [[NSWorkspace sharedWorkspace] selectFile:URL.path inFileViewerRootedAtPath:URL.path.stringByDeletingLastPathComponent];
+}
+
+#pragma mark Element display
+
+- (IBAction)partsPopUpAction:(id)sender
+{
+    self.selectedPart = self.partsPopUp.selectedItem.representedObject;
+}
+
+- (TDPhotoshopElementProduction *)productionForPreviewingPart:(TDSchemaPartDefinition *)part
+{
+    NSString *renditionName = [[part bestPreviewRendition] name];
+    
+    for (TDPhotoshopElementProduction *production in part.productions) {
+        if ([production.comment containsString:renditionName]) {
+            return production;
+        }
+    }
+    
+    return [[part.productions allObjects] firstObject];
+}
+
+- (void)reflectPartSelectionChange
+{
+    self.systemAppearanceImageView.image = self.selectedPart.previewImage;
+    
+    if (self.selectedPart.productions.count > 0) {
+        [self.customizedAppearanceContainerView setHidden:NO];
+        
+        TDPhotoshopElementProduction *previewProduction = [self productionForPreviewingPart:self.selectedPart];
+        NSImage *previewImage = [[NSImage alloc] initWithContentsOfURL:[previewProduction.asset fileURLWithDocument:self.document]];
+        self.customizedAppearanceImageView.image = previewImage;
+        self.customizeButton.title = @"Edit…";
+    } else {
+        [self.customizedAppearanceContainerView setHidden:YES];
+        self.customizeButton.title = @"Customize";
+    }
 }
 
 #pragma mark Parts Table View
