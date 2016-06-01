@@ -111,6 +111,8 @@
 		DDFC04F01C87336D00162CCE /* AMEffectEditorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMEffectEditorWindowController.xib; sourceTree = "<group>"; };
 		DDFC04F41C87662400162CCE /* AMFlippedClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMFlippedClipView.h; sourceTree = "<group>"; };
 		DDFC04F51C87662400162CCE /* AMFlippedClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMFlippedClipView.m; sourceTree = "<group>"; };
+		DDFD0BE51CFE5BC100AB804F /* TDThemeBitSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDThemeBitSource.h; sourceTree = "<group>"; };
+		DDFD0BE71CFE5D3E00AB804F /* PSDPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSDPreview.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				DD3B2F031C8935C40000D811 /* TDMicaAsset.h */,
 				DD3B2F041C8935C40000D811 /* TDPhotoshopAsset.h */,
 				DD3B2F051C8935C40000D811 /* TDPNGAsset.h */,
+				DDFD0BE71CFE5D3E00AB804F /* PSDPreview.h */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				DDFC04DF1C872CAB00162CCE /* TDThemeConstant.h */,
 				DDFC04EC1C872D8800162CCE /* TDElementProduction.h */,
 				DDFC04ED1C87321C00162CCE /* TDRenditionSpec.h */,
+				DDFD0BE51CFE5BC100AB804F /* TDThemeBitSource.h */,
 			);
 			path = "CoreThemeDefinition Headers";
 			sourceTree = "<group>";
@@ -353,6 +357,7 @@
 		51A2C2A11B291C5D002B5971 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Guilherme Rambo";
 				TargetAttributes = {
@@ -543,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -553,6 +559,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Appearance-Maker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Appearance Maker/Appearance Maker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -560,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -570,6 +579,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.guilhermerambo.Appearance-Maker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Appearance Maker/Appearance Maker-Bridging-Header.h";
 			};
 			name = Release;
 		};

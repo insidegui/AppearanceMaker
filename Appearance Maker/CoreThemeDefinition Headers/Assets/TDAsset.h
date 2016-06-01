@@ -21,7 +21,9 @@
 @property(readonly, nonatomic) NSString *baseName;
 - (void)setHasProduction:(id)arg1;
 - (BOOL)hasProduction;
-- (id)fileURLWithDocument:(id)arg1;
+
+- (NSURL *)fileURLWithDocument:(CoreThemeDocument *)document;
+
 - (id)sourceRelativePath;
 - (id)_sourceRelativePathComponents;
 - (unsigned int)scaleFactor;

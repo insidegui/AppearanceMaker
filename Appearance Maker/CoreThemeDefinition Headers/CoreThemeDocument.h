@@ -15,6 +15,9 @@
 #import "TDDistillRunner.h"
 #import "TDColor.h"
 #import "TDAsset.h"
+#import "TDPhotoshopAsset.h"
+#import "TDThemeBitSource.h"
+#import "PSDPreview.h"
 
 @protocol TDAssetManagementDelegate <NSObject>
 
