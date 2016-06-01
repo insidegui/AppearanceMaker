@@ -225,6 +225,13 @@
     }
     
     [self reflectPartSelectionChange];
+    [self openAssetEditorForPart:part];
+}
+
+- (void)openAssetEditorForPart:(TDSchemaPartDefinition *)part
+{
+    NSArray <NSURL *> *editorURLs = [self URLsOfAssetsForPart:part];
+    NSLog(@"Open asset editor with URLs: %@", editorURLs);
 }
 
 //- (void)customizeElementDefinition:(TDSchemaDefinition *)definition
@@ -248,7 +255,7 @@
         coalescing = NO;
     });
     
-    [[NSWorkspace sharedWorkspace] selectFile:URL.path inFileViewerRootedAtPath:URL.path.stringByDeletingLastPathComponent];
+//    [[NSWorkspace sharedWorkspace] selectFile:URL.path inFileViewerRootedAtPath:URL.path.stringByDeletingLastPathComponent];
 }
 
 #pragma mark Element display
@@ -269,6 +276,17 @@
     }
     
     return [[part.productions allObjects] firstObject];
+}
+
+- (NSArray <NSURL *> *)URLsOfAssetsForPart:(TDSchemaPartDefinition *)part
+{
+    NSMutableArray *URLs = [NSMutableArray new];
+    
+    for (TDPhotoshopElementProduction *production in part.productions) {
+        [URLs addObject:[production.asset fileURLWithDocument:self.document]];
+    }
+    
+    return [URLs copy];
 }
 
 - (void)reflectPartSelectionChange
