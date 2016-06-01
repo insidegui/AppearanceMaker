@@ -26,7 +26,7 @@
     self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
     
     [self.contentView setWantsLayer:YES];
-    self.titleVisibility = NSWindowTitleHidden;
+//    self.titleVisibility = NSWindowTitleHidden;
 
     _childViewControllersObservationContext = &_childViewControllersObservationContext;
     _selectedTabObservationContext = &_selectedTabObservationContext;
@@ -83,6 +83,7 @@
 {
     NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:@"TabNavToolbar"];
     toolbar.delegate = self;
+    toolbar.displayMode = NSToolbarDisplayModeIconOnly;
 
     return toolbar;
 }
