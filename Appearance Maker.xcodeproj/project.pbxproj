@@ -28,6 +28,7 @@
 		51E9DAEC1B293B730031E002 /* AppearancePreview.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 51E9DAE41B293B540031E002 /* AppearancePreview.bundle */; };
 		51E9DAF71B2947F20031E002 /* AMEditorAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */; };
 		51E9DAF91B2948FA0031E002 /* AMEditorAppearance.car in Resources */ = {isa = PBXBuildFile; fileRef = 51E9DAF81B2948FA0031E002 /* AMEditorAppearance.car */; };
+		B30ADE1F1E56D45900D53F27 /* AMCustomColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = B30ADE1E1E56D45900D53F27 /* AMCustomColorWell.m */; };
 		DD3B2E831C88E6120000D811 /* AMMaterialsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3B2E821C88E6120000D811 /* AMMaterialsEditorViewController.m */; };
 		DDFC04F11C87336D00162CCE /* AMEffectEditorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFC04EF1C87336D00162CCE /* AMEffectEditorWindowController.m */; };
 		DDFC04F21C87336D00162CCE /* AMEffectEditorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDFC04F01C87336D00162CCE /* AMEffectEditorWindowController.xib */; };
@@ -83,6 +84,8 @@
 		51E9DAF51B2947F20031E002 /* AMEditorAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEditorAppearance.h; sourceTree = "<group>"; };
 		51E9DAF61B2947F20031E002 /* AMEditorAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEditorAppearance.m; sourceTree = "<group>"; };
 		51E9DAF81B2948FA0031E002 /* AMEditorAppearance.car */ = {isa = PBXFileReference; lastKnownFileType = file; path = AMEditorAppearance.car; sourceTree = "<group>"; };
+		B30ADE1D1E56D45900D53F27 /* AMCustomColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCustomColorWell.h; sourceTree = "<group>"; };
+		B30ADE1E1E56D45900D53F27 /* AMCustomColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCustomColorWell.m; sourceTree = "<group>"; };
 		DD3B2E811C88E6120000D811 /* AMMaterialsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMaterialsEditorViewController.h; sourceTree = "<group>"; };
 		DD3B2E821C88E6120000D811 /* AMMaterialsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMaterialsEditorViewController.m; sourceTree = "<group>"; };
 		DD3B2F021C8935C40000D811 /* TDAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDAsset.h; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				51E9DADE1B29393A0031E002 /* AMBackgroundView.m */,
 				DDFC04F41C87662400162CCE /* AMFlippedClipView.h */,
 				DDFC04F51C87662400162CCE /* AMFlippedClipView.m */,
+				B30ADE1D1E56D45900D53F27 /* AMCustomColorWell.h */,
+				B30ADE1E1E56D45900D53F27 /* AMCustomColorWell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				51E9DAD61B292E050031E002 /* AMDocumentWindow.m in Sources */,
 				51E9DAD91B29364B0031E002 /* AMColorsEditorViewController.m in Sources */,
 				DDFC04F11C87336D00162CCE /* AMEffectEditorWindowController.m in Sources */,
+				B30ADE1F1E56D45900D53F27 /* AMCustomColorWell.m in Sources */,
 				51A2C2DA1B292A42002B5971 /* AMPartTableCellView.m in Sources */,
 				51E9DADC1B2936700031E002 /* AMPreviewViewController.m in Sources */,
 				51A2C2B71B291C5D002B5971 /* AMThemeDocument.m in Sources */,
